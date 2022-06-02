@@ -1,38 +1,122 @@
 .footer {
-    font-size: 14px;
-    color: white;
-    padding: 16px 10px 19px 10px;
+  font-size: 14px;
+  color: white;
+  padding: 16px 10px 19px 10px;
+  display: flex;
+  justify-content: space-between;
+
+  &__right-reserved {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+  }
 
-    &__right-reserved {
+  &__social {
+    display: flex;
+
+    &__item {
+      color: var(--bgFooter);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      border-radius: 50%;
+      margin-right: 10px;
+
+      a {
         display: flex;
+        justify-content: center;
         align-items: center;
+      }
     }
-
-    &__social {
-        display: flex;
-
-        &__item {
-            color: var(--bgFooter);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: white;
-            border-radius: 50%;
-            margin-right: 10px;
-
-            a {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    }
+  }
 }
 
 .bg-footer {
-    background: var(--mainColor);
+  background: var(--mainColor);
+}
+
+.clinic-info {
+  padding: 54px 0 25px;
+
+  &__list {
+    font-family: 'SVN-Gilroy Light';
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 20px 0;
+    font-weight: 400;
+
+    .item {
+      list-style-type: none;
+      display: flex;
+      color: var(--white);
+
+      padding: 5px 0;
+
+      .label {
+        color: var(--white);
+        opacity: 0.8;
+        flex-shrink: 0;
+        letter-spacing: 0.02em;
+        margin-right: 8px;
+      }
+
+      .info {
+        color: var(--white);
+        font-family: 'SVN-Gilroy Light';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &__icon {
+    img {
+      padding-right: 40px;
+    }
+  }
+}
+
+.bg-clinic-info {
+  background: var(--green01);
+}
+
+@media (max-width: 920px) {
+  .clinic-info {
+    padding: 24px 0 10px;
+
+    &__list {
+      flex-wrap: wrap;
+      font-size: 14px;
+
+      .list-item {
+        .item {
+          .label {
+            font-size: 14px;
+          }
+
+          .info {
+            font-size: 14px;
+          }
+        }
+        &--mobile {
+          width: 30%;
+        }
+      }
+    }
+
+    &__icon {
+      display: flex;
+      justify-content: center;
+      img {
+        padding-right: 10px;
+        width: 150px;
+      }
+    }
+  }
 }

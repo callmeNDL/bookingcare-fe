@@ -5,7 +5,7 @@ const Header = () => {
     <>
       <div className='bg-main'>
         <div className='container'>
-          <div className='top bg-main'>
+          <div className='header bg-main'>
             <div className='support'>
               <div className='support__hotline'>
                 <span className='support__hotline__text'>Hotline đặt khám: </span>

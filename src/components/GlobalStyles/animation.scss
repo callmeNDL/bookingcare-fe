@@ -1,0 +1,16 @@
+@keyframes fadeIn {
+  from {
+    right: -312px;
+  }
+  to {
+    right: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    right: 0;
+  }
+  to {
+    right: -312px;
+  }
+}

@@ -1,21 +1,36 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet');
+// component
 @import '../../assets/scss/components/Header.scss';
 @import '../../assets/scss/components/Footer.scss';
 @import '../../assets/scss/components/Menu.scss';
+
+// Page
 @import '../../assets/scss/page/Home.scss';
+@import '../../assets/scss/page/Doctor.scss';
+
+// animation
+@import './animation.scss';
 
 :root {
   --mainColor: #24ac7c;
   --primary: rgb(240, 249, 244);
+  --second: #f4faf9;
   --textColor: rgba(20, 36, 65, 0.8);
   --black: #000;
+  --white: #ffffff;
+  --gray1: #f5fafa;
+
+  --green01: #39b58a;
+
+  --azure: #eff9fb;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: var(--textColor);
 }
 
 html {
