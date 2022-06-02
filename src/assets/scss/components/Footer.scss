@@ -1,0 +1,38 @@
+.footer {
+    font-size: 14px;
+    color: white;
+    padding: 16px 10px 19px 10px;
+    display: flex;
+    justify-content: space-between;
+
+    &__right-reserved {
+        display: flex;
+        align-items: center;
+    }
+
+    &__social {
+        display: flex;
+
+        &__item {
+            color: var(--bgFooter);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 50%;
+            margin-right: 10px;
+
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.bg-footer {
+    background: var(--mainColor);
+}
