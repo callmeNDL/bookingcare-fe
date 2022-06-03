@@ -1,0 +1,190 @@
+.modal-login {
+  width: 750px !important;
+  display: flex;
+  margin-left: -25% !important;
+  padding: 24px 24px 40px;
+
+  .modal-header {
+    border: none;
+  }
+  .login {
+    display: flex;
+    justify-content: space-around;
+
+    &__form {
+      width: 45%;
+
+      &__title {
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        &__login {
+          margin-right: 20px;
+        }
+      }
+
+      &__username {
+        margin: 40px 0 20px;
+        border-bottom: 1px solid var(--gray9);
+
+        input {
+          border: none;
+          width: 100%;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--black);
+        }
+      }
+
+      &__password {
+        margin: 40px 0 20px;
+        border-bottom: 1px solid var(--gray9);
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          border: none;
+          width: 80%;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--black);
+        }
+
+        i {
+          font-size: 14px;
+        }
+      }
+
+      &__forgot-password {
+        width: 100%;
+        float: right;
+        display: block;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: right;
+        color: var(--blue01);
+        padding: 10px 0;
+      }
+
+      &__button {
+        background: linear-gradient(79.98deg, rgb(76, 196, 139) 26.18%, rgb(68, 161, 152) 99.22%);
+        border-radius: 8px;
+        color: white;
+        width: 100%;
+        font-size: 14px;
+        margin: 16px 0px 48px;
+        height: 44px;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+      }
+
+      &__social {
+        &__text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--black);
+          padding-bottom: 30px;
+
+          hr {
+            width: calc(50% - 100px);
+            margin-left: 0px;
+            margin-right: 8px;
+            color: currentColor;
+          }
+
+          span {
+            opacity: 0.9;
+            font-size: 12px;
+            padding: 0 20px;
+            font-weight: 500;
+            color: currentColor;
+          }
+        }
+
+        &__wrap {
+          display: flex;
+          justify-content: space-around;
+
+          .facebook {
+            font-size: 15px;
+            padding: 5px 50px;
+            border-radius: 5px;
+            border: 1px solid var(--gray9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              background: var(--blue);
+              color: var(--white);
+              opacity: 0.8;
+            }
+          }
+
+          .google {
+            font-size: 15px;
+            padding: 5px 50px;
+            border-radius: 5px;
+            border: 1px solid var(--gray9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              background: var(--red);
+              color: var(--white);
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+
+    &__info {
+      width: 45%;
+
+      &__img {
+        padding: 40px 0;
+        max-width: 320px;
+      }
+
+      &__hotline {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+
+        i {
+          font-size: 24px;
+          opacity: 0.8;
+        }
+
+        .text {
+          padding-left: 10px;
+        }
+
+        .phone {
+          color: var(--black);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

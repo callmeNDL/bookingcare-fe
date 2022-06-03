@@ -6,11 +6,11 @@
     right: 0;
   }
 }
-@keyframes fadeOut {
+@keyframes hoverIn {
   from {
-    right: 0;
+    border-bottom: 0px solid var(--mainColor);
   }
   to {
-    right: -312px;
+    border-bottom: 1px solid var(--mainColor);
   }
 }

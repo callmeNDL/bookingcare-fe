@@ -76,6 +76,110 @@
   }
 }
 
+.bg-gray2 {
+  background: var(--gray2);
+}
+.doctors {
+  display: flex;
+  flex-wrap: wrap;
+
+  .doctor {
+    margin: 20px auto;
+    padding-top: 20px;
+    border-radius: 4px;
+    width: 24%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--white);
+
+    &__img {
+      border-radius: 50%;
+      max-width: 200px;
+    }
+
+    &__info {
+      padding: 18px 5px;
+
+      &__name {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
+        color: var(--black);
+        font-weight: 800;
+        opacity: 0.8;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      &__hospital {
+        font-size: 16px;
+        line-height: 18px;
+        color: var(--textColor);
+        text-align: center;
+        margin: 12px 0px 4px;
+      }
+
+      &__specializations {
+        font-size: 14px;
+        background: var(--azure);
+        opacity: 0.9;
+        border-radius: 4px;
+        text-align: center;
+        padding: 2px 8px;
+      }
+    }
+
+    &__button {
+      font-size: 16px;
+      margin-top: auto;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      padding: 6px 12px;
+      background: linear-gradient(79.98deg, rgb(76, 196, 139) 26.18%, rgb(68, 161, 152) 99.22%);
+      border-radius: 0 0 4px 4px;
+
+      .booking-text {
+        padding-left: 10px;
+        color: var(--white);
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.pagination-wrap {
+  padding: 15px 0 40px;
+  .container {
+    .pagination {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 14px;
+
+      a {
+        color: var(--textColor);
+      }
+
+      .active {
+        .page-link {
+          background-color: var(--mainColor);
+          border-color: var(--mainColor);
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 920px) {
   .doctor-search {
     &__title {
@@ -99,6 +203,16 @@
         min-width: 80px;
         font-size: 14px;
         padding: 5px;
+      }
+    }
+  }
+
+  .doctors {
+    .doctor {
+      width: 45%;
+
+      &__img {
+        max-width: 80%;
       }
     }
   }

@@ -1,16 +1,21 @@
 @import 'normalize.css';
+@import '../../../node_modules/react-calendar/dist/Calendar.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet');
 // component
 @import '../../assets/scss/components/Header.scss';
 @import '../../assets/scss/components/Footer.scss';
 @import '../../assets/scss/components/Menu.scss';
+@import '../../assets/scss/components/ModalLogin.scss';
 
 // Page
 @import '../../assets/scss/page/Home.scss';
 @import '../../assets/scss/page/Doctor.scss';
+@import '../../assets/scss/page/DoctorDetail.scss';
+@import '../../assets/scss/page/Hospital.scss';
 
 // animation
 @import './animation.scss';
+@import './button.scss';
 
 :root {
   --mainColor: #24ac7c;
@@ -20,10 +25,20 @@
   --black: #000;
   --white: #ffffff;
   --gray1: #f5fafa;
+  --gray2: #f4f4f4;
+  --gray9: #00000033;
 
   --green01: #39b58a;
 
   --azure: #eff9fb;
+
+  --orange01: #fff3e5;
+  --orange09: #ff8a00;
+
+  --blue: rgb(49, 97, 173);
+  --blue01: rgb(0, 163, 255);
+
+  --red: #ff0000;
 }
 
 * {
@@ -46,4 +61,14 @@ body {
 
 .bg-main {
   background: var(--primary);
+}
+
+//content hospital
+.hospital-desc {
+  p {
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: var(--black);
+    opacity: 0.7;
+  }
 }
