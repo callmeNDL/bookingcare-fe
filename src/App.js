@@ -8,6 +8,7 @@ import Doctor from "./pages/Doctor";
 import DoctorDetail from "./pages/DoctorDetail";
 
 function App() {
+
   return (
     <AppLayout>
       <Routes>

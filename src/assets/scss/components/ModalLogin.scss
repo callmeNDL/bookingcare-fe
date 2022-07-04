@@ -54,6 +54,7 @@
         }
 
         i {
+          cursor: pointer;
           font-size: 14px;
         }
       }
@@ -81,6 +82,11 @@
         border: none;
         outline: none;
         text-transform: uppercase;
+
+        &:hover {
+          color: var(--mainColor);
+          background: var(--white);
+        }
       }
 
       &__social {
@@ -110,6 +116,7 @@
         &__wrap {
           display: flex;
           justify-content: space-around;
+          cursor: pointer;
 
           .facebook {
             font-size: 15px;

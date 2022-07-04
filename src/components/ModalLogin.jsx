@@ -6,9 +6,13 @@ import Login from '../assets/img/login.png';
 
 const ModalLogin = () => {
   const [show, setShow] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleShowPassWord = () => setShowPassword(!showPassword)
+
 
   return (
     <div className="">
@@ -28,9 +32,8 @@ const ModalLogin = () => {
               <input className="" type='text' placeholder="Tên đăng nhập" />
             </div>
             <div className="login__form__password">
-              <input className="password" type='text' placeholder="Mật khẩu" />
-              <i class="fa-solid fa-eye"></i>
-              <i class="fa-solid fa-eye-slash"></i>
+              <input className="password" type={showPassword ? 'password' : 'text'} placeholder="Mật khẩu" />
+              <i class={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={handleShowPassWord}></i>
             </div>
             <div class="login__form__forgot-password">Quên mật khẩu</div>
             <button type="submit" class="login__form__button">Đăng nhập</button>

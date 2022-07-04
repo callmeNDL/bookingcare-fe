@@ -1,8 +1,12 @@
 import { ReactComponent as IconSearch } from '../assets/icons/search.svg';
 import IconBooking from '~/assets/icons/booking.png'
 import { Pagination } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import * as doctorServices from '~/apiServices/doctorServices';
 
 const Doctor = () => {
+  const [allDoctor, setAllDoctor] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const doctors = [
     {
@@ -57,33 +61,20 @@ const Doctor = () => {
       HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
       Email: 'phambichthao@gmail.com',
     },
-    {
-      MaBS: 'BS05',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Nguyễn Quang',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
-      Email: 'phambichthao@gmail.com',
-    },
-    {
-      MaBS: 'BS06',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Nguyễn Quang',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
-      Email: 'phambichthao@gmail.com',
-    },
   ]
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      setLoading(true);
+
+      const result = await doctorServices.fetchDoctor("ALL");
+      setAllDoctor(result);
+
+      setLoading(false);
+    }
+    fetchApi();
+  }, [])
+  console.log(allDoctor);
 
   return (
     <>
