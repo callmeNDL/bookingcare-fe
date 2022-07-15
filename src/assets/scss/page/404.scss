@@ -1,0 +1,36 @@
+.page-err {
+  padding: 50px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 50%;
+  }
+
+  h1 {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+
+  .back-to-home {
+    display: flex;
+    font-size: 12px;
+
+    p {
+      color: var(--black);
+      margin: 0;
+      padding: 0 5px 20px 0;
+    }
+
+    a {
+      color: teal;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}

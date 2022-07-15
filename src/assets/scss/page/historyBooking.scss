@@ -1,0 +1,146 @@
+.history-booking {
+  padding: 20px 10px 50px 10px;
+
+  &__title {
+    border-bottom: 1px solid #3161ad;
+
+    .title {
+      width: fit-content;
+      background: #3161ad;
+      padding: 5px 20px;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--white);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+
+      .icon {
+        font-size: 24px;
+        margin-right: 10px;
+        color: var(--white) !important;
+      }
+    }
+  }
+
+  &__content {
+    .history-none {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+
+      .btn-history {
+        color: var(--white);
+      }
+
+      &--disable {
+        display: none;
+      }
+    }
+  }
+
+  .list-booking {
+    padding: 20px 10px;
+
+    .item {
+      max-width: 600px;
+      display: flex;
+      border-radius: 16px;
+      box-shadow: rgb(0 0 0 / 30%) 0px 2px 10px;
+      border-radius: 16px;
+      margin: 0px 20% 10px;
+      cursor: pointer;
+
+      .time {
+        width: 22%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(49, 97, 173, 0.125);
+        border-radius: 16px;
+        font-size: 13px;
+        padding: 30px 0;
+        margin-right: 15px;
+
+        .date {
+          color: rgb(7, 91, 181);
+          opacity: 0.4;
+          font-size: 48px;
+          line-height: 38px;
+          font-weight: bold;
+        }
+        .month-year {
+          text-align: center;
+          font-weight: 700;
+          margin: 5px 0;
+        }
+      }
+    }
+
+    .info {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--black);
+
+      .user-name {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+      }
+
+      .info-doctor {
+        margin-top: 10px;
+        font-weight: 500;
+      }
+
+      .hospital-name {
+        text-transform: uppercase;
+        font-size: 16px;
+      }
+    }
+
+    .status-box {
+      display: flex;
+      align-items: center;
+
+      .status {
+        display: flex;
+        text-align: center;
+        border-radius: 999px;
+        max-width: 100px;
+        height: 38px;
+        border: none rgb(0, 0, 0);
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 7px 10px;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 15px;
+        background-color: rgba(237, 24, 70, 0.1);
+
+        &--fail {
+          color: rgb(237, 24, 70);
+        }
+
+        &--new {
+          background-color: rgb(53, 195, 131);
+        }
+        &--confirm {
+          background-color: rgb(240, 242, 128);
+        }
+      }
+    }
+  }
+}

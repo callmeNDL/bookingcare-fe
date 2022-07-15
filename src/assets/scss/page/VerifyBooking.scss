@@ -1,0 +1,20 @@
+.title-verily {
+  text-align: center;
+  font-size: 24px;
+  color: teal;
+  // color: teal;
+  animation-name: changColor;
+  animation-duration: 4s;
+  font-weight: 500;
+  text-transform: uppercase;
+  // animation: blur 0.75s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+}
+@keyframes changColor {
+  from {
+    color: red;
+  }
+  to {
+    color: yellow;
+  }
+}

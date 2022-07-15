@@ -1,0 +1,120 @@
+.profile {
+  font-size: 14px;
+
+  &__title {
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 35px;
+    text-transform: uppercase;
+    color: rgb(47, 48, 53);
+    margin-top: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__content {
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 10px;
+    border-radius: 16px;
+    padding: 10px 20px 40px;
+    max-width: 60%;
+    margin: auto;
+    margin-bottom: 50px;
+
+    &__general {
+      max-height: 150px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      width: 100%;
+
+      .img-profile {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+
+      .name-profile {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+
+        p {
+          overflow-wrap: break-word;
+          word-break: keep-all;
+          max-width: calc(100% - 30px);
+          width: calc(100% - 30px);
+          font-size: 18px;
+          line-height: 30px;
+          color: rgb(47, 48, 53);
+          margin-bottom: 0px;
+          font-weight: bold;
+        }
+
+        .setting {
+          position: relative;
+
+          .dropdown-setting {
+            color: var(--black);
+            left: -200%;
+            position: absolute;
+            padding: 5px;
+            width: 100px;
+            height: 30px;
+            box-shadow: rgb(0 0 0 / 25%) 0px 2px 10px;
+            background-color: var(--white);
+            display: block;
+            border-radius: 5px;
+
+            &:hover {
+              cursor: pointer;
+              background-color: teal;
+              color: white;
+            }
+          }
+
+          .icon {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .detail-info {
+      box-shadow: rgb(0 0 0 / 25%) 0px 2px 10px;
+      margin-top: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+
+      .item-info {
+        display: flex;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+        .item-name {
+          padding: 10px 0px 10px 20px;
+          font-size: 16px;
+          line-height: 20px;
+          width: 40%;
+          color: rgb(0, 0, 0);
+          opacity: 0.8;
+          border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .item-value {
+          padding: 10px 20px 10px 0px;
+          width: 60%;
+          overflow-wrap: break-word;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 20px;
+          text-align: right;
+          color: rgb(47, 48, 53);
+        }
+      }
+    }
+  }
+}

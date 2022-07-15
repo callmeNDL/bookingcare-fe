@@ -1,0 +1,31 @@
+.box-info {
+  position: absolute;
+  top: 40px;
+  min-width: 200px;
+  z-index: 10;
+  background: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 20px;
+  border-radius: 5px;
+  list-style-type: none;
+  padding: 5px 10px;
+
+  .info-item {
+    padding: 5px 3px;
+    font-weight: 500;
+    color: var(--textColor);
+    font-size: 14px;
+    line-height: 18px;
+    margin: 5px 0;
+
+    .icon {
+      font-size: 24px;
+      margin-right: 5px;
+    }
+
+    &:hover {
+      background: var(--primary);
+      color: teal;
+      border-radius: 3px;
+    }
+  }
+}

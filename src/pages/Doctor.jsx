@@ -3,78 +3,18 @@ import IconBooking from '~/assets/icons/booking.png'
 import { Pagination } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import * as doctorServices from '~/apiServices/doctorServices';
-
-const Doctor = () => {
-  const [allDoctor, setAllDoctor] = useState({});
-  const [loading, setLoading] = useState(false);
-
-  const doctors = [
-    {
-      MaBS: 'BS01',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Phạm Thị Bích Đào',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
-      Email: 'phambichthao@gmail.com',
-    },
-    {
-      MaBS: 'BS02',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Nguyễn Quang',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/bac-si-noi-tiet-le-phong-isofhcare-jpg_9362f80f_b921_470f_b164_5d118f523c7e.png',
-      Email: 'phambichthao@gmail.com',
-    },
-    {
-      MaBS: 'BS03',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Nguyễn Quang',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
-      Email: 'phambichthao@gmail.com',
-    },
-    {
-      MaBS: 'BS04',
-      MaKhoa: 'RHM',
-      HoTen: 'PGS.TS.  Nguyễn Quang',
-      CMND: '123456789',
-      NgaySinh: '25/07/2000',
-      DiaChi: 'QuyNhon',
-      GioiTinh: 0,
-      SDT: '0328290432',
-      ChuyenNganh: 'Chuyên khoa Tai Mũi Họng',
-      HinhAnh: 'https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/test_b6fdadb7_445d_4a6a_ac5c_0ad3c31cdd67.png',
-      Email: 'phambichthao@gmail.com',
-    },
-  ]
+import { Link } from 'react-router-dom';
+const Doctor = (props) => {
+  const [allDoctor, setAllDoctor] = useState([]);
 
   useEffect(() => {
     const fetchApi = async () => {
-      setLoading(true);
-
       const result = await doctorServices.fetchDoctor("ALL");
       setAllDoctor(result);
-
-      setLoading(false);
     }
     fetchApi();
+
   }, [])
-  console.log(allDoctor);
 
   return (
     <>
@@ -99,18 +39,18 @@ const Doctor = () => {
         <div className='container'>
           <div className='doctors'>
             {
-              doctors.map((item) => {
+              allDoctor.map((item) => {
                 return <div className='doctor' key={item.MaBS}>
                   <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
                   <div className='doctor__info'>
-                    <a href='#' className='doctor__info__name' >{item.HoTen}</a>
+                    <div className='doctor__info__name' >{item.HoTen}</div>
                     <div className='doctor__info__hospital'>Bệnh viện Hữu Nghị Việt Đức</div>
                     <div className='doctor__info__specializations'>{item.ChuyenNganh}</div>
                   </div>
-                  <div className='doctor__button'>
+                  <Link to={`${item.id}`} className=" doctor__button link">
                     <img className='booking-img' src={IconBooking} alt='icon-booking' />
                     <span className='booking-text'>Đặt khám</span>
-                  </div>
+                  </Link>
                 </div>
               })
             }

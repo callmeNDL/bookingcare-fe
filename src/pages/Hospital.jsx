@@ -5,7 +5,6 @@ import clock from '~/assets/icons/clock.png';
 import strikethrough from '~/assets/icons/strikethrough.png';
 
 
-
 function Hospital(params) {
   return (
     <>
@@ -16,11 +15,11 @@ function Hospital(params) {
             <div className='hospital-content__info'>
               <div className='hospital-content__info__title'>
                 <img src={IconClinic} className="img-fluid" alt="..." />
-                <h1 class="name">Phòng khám Đa Khoa Y khoa Hà Nội</h1>
+                <h1 className="name">Phòng khám Đa Khoa Y khoa STU</h1>
               </div>
               <div className='hospital-content__info__location'>
                 <img src={location} className="img-fluid" alt="icon-location" />
-                Tòa nhà CT4B - CT4C, Khu Đô Thị Xa La, Phúc La, Hà Đông, Thành phố Hà Nội
+                Tòa nhà 180 Cao Lỗ, Phường 4, Quận 8, Tp. Hồ Chí Minh
               </div>
               <div className='hospital-content__info__working-time'>
                 <img src={clock} className="img-fluid" alt="clock" />

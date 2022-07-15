@@ -12,12 +12,15 @@
     display: flex;
     align-items: center;
 
-    &__item {
-      cursor: pointer;
-      margin-right: 20px;
+    &__link {
+      text-decoration: none;
+      &__item {
+        cursor: pointer;
+        margin-right: 20px;
 
-      &:hover {
-        color: var(--mainColor);
+        &:hover {
+          color: var(--mainColor);
+        }
       }
     }
   }
@@ -25,6 +28,10 @@
   .menu__mobile {
     display: none;
   }
+}
+
+.link {
+  text-decoration: none;
 }
 
 @media (max-width: 920px) {

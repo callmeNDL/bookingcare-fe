@@ -36,6 +36,56 @@
           font-size: 14px;
           font-weight: 500;
           color: var(--black);
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .input-box {
+        margin: 5px 0 15px 0;
+        border-bottom: 1px solid var(--gray9);
+        display: flex;
+        flex-direction: column;
+
+        .register__label {
+          font-size: 12px;
+          color: black;
+          font-weight: 700;
+          line-height: 18px;
+        }
+
+        .register__input {
+          border: none;
+          width: 100%;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--textColor);
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        &--radio {
+          display: flex;
+          flex-direction: row;
+          border: none;
+
+          label {
+            margin-right: 20px;
+            font-size: 14px;
+            font-weight: 500;
+
+            input {
+              margin-right: 5px;
+            }
+          }
+        }
+
+        &--disable {
+          display: none;
         }
       }
 
@@ -51,6 +101,10 @@
           font-size: 14px;
           font-weight: 500;
           color: var(--black);
+
+          &:focus {
+            outline: none;
+          }
         }
 
         i {

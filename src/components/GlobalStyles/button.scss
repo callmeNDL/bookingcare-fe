@@ -13,4 +13,66 @@
   box-sizing: border-box;
   border-radius: 4px;
   color: #2f3035;
+
+  &:hover {
+    opacity: 1;
+    font-weight: bold;
+    box-shadow: var(--orange09) 0px 2px 2px, var(--orange09) 0px -2px 3px, var(--orange09) 0px 2px 2px,
+      var(--orange09) 0px 2px 2px, var(--orange09) 0px -3px 5px;
+  }
+
+  &--active {
+    cursor: pointer;
+    margin-right: 20px;
+    max-width: 100px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #2f3035;
+    background: var(--orange09);
+    color: var(--white);
+
+    &:hover {
+      opacity: 1;
+      font-weight: bold;
+      box-shadow: var(--orange09) 0px 2px 2px, var(--orange09) 0px -2px 3px, var(--orange09) 0px 2px 2px,
+        var(--orange09) 0px 2px 2px, var(--orange09) 0px -3px 5px;
+    }
+  }
+}
+
+.doctor__button {
+  border: none;
+  font-size: 16px;
+  margin-top: auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 6px 12px;
+  background: linear-gradient(79.98deg, rgb(76, 196, 139) 26.18%, rgb(68, 161, 152) 99.22%);
+  border-radius: 4px;
+  opacity: 0.9;
+
+  .booking-text {
+    font-size: 16px;
+    padding-left: 10px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  &:hover {
+    opacity: 1;
+    font-weight: bold;
+    box-shadow: rgba(35, 122, 83, 0.25) 0px 2px 2px, rgba(11, 37, 20, 0.12) 0px -2px 3px,
+      rgba(30, 131, 72, 0.12) 0px 2px 2px, rgba(35, 122, 83, 0.25) 0px 2px 2px, rgba(28, 68, 51, 0.09) 0px -3px 5px;
+  }
 }

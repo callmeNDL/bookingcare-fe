@@ -136,6 +136,14 @@ const Home = () => {
         </div>
       </div>
 
+      <div className='disc'>
+        <div className='container'>
+          <div className='disc-wrap'>
+            <p>ISOFHCARE - Nền tảng đặt lịch khám online hàng đầu với các bệnh viện, phòng khám uy tín trên cả nước chọn dịch vụ Khám sản phụ khoa, khám tiêu hóa, khám cơ xương khớp, khám sức khỏe tổng quát, Khám nhi.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }

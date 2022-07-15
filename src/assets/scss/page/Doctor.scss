@@ -95,8 +95,9 @@
     background: var(--white);
 
     &__img {
-      border-radius: 50%;
+      border-radius: 25px;
       max-width: 200px;
+      max-height: 150px;
     }
 
     &__info {

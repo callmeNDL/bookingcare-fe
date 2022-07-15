@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     padding: 0 18px;
+    position: relative;
 
     &:hover {
       cursor: pointer;
@@ -45,6 +46,29 @@
       margin: 5px;
       &::after {
         content: '/';
+      }
+    }
+    .user__login {
+      button {
+        background: transparent !important;
+        border: none;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        color: var(--textColor);
+
+        &:hover {
+          color: teal;
+          border: none;
+          font-weight: bold;
+        }
+      }
+    }
+    .user__register {
+      &:hover {
+        color: teal;
+        border: none;
+        font-weight: bold;
       }
     }
   }

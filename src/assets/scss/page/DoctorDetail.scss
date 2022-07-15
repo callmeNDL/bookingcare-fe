@@ -17,6 +17,8 @@
 
         .doctor__info {
           margin: auto 0 auto 40px;
+          list-style-type: none;
+
           &__name {
             flex: 0 0 75%;
             font-weight: bold;
@@ -28,10 +30,11 @@
 
           &__hospital {
             font-weight: normal;
-            font-size: 14px;
-            line-height: 18px;
+            font-size: 16px;
+            line-height: 16px;
             color: #2f3035;
             margin-bottom: 10px;
+            font-weight: bold;
           }
 
           &__specializations {
@@ -44,21 +47,36 @@
             line-height: 18px;
             color: #2f3035;
             padding: 2px 8px;
+            font-weight: 500;
+          }
+
+          &__item {
+            font-size: 14px;
+            margin: 10px 0;
+
+            .title {
+              font-weight: bold;
+              margin-right: 15px;
+            }
           }
         }
       }
 
       &__calendar {
+        background-color: var(--white);
         display: flex;
         justify-content: space-between;
-        background: var(--orange01);
         padding: 20px;
         margin-bottom: 18px;
         border-radius: 5px;
         box-shadow: 0px 1px 0px rgb(0 0 0 / 10%);
 
         .calendar-work {
+          background: var(--blue02);
           width: 80%;
+          padding: 20px;
+          position: relative;
+
           &__title {
             font-size: 18px;
             font-weight: 700;
@@ -70,6 +88,12 @@
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
+          }
+
+          &__btn {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 10px;
           }
         }
       }
