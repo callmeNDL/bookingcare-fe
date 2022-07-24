@@ -44,7 +44,7 @@ const Doctor = (props) => {
                   <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
                   <div className='doctor__info'>
                     <div className='doctor__info__name' >{item.HoTen}</div>
-                    <div className='doctor__info__hospital'>Bệnh viện Hữu Nghị Việt Đức</div>
+                    <div className='doctor__info__hospital'>Phòng khám Đa Khoa Y khoa STU</div>
                     <div className='doctor__info__specializations'>{item.ChuyenNganh}</div>
                   </div>
                   <Link to={`${item.id}`} className=" doctor__button link">
@@ -63,16 +63,8 @@ const Doctor = (props) => {
             <Pagination.First />
             <Pagination.Prev />
             <Pagination.Item>{1}</Pagination.Item>
-            <Pagination.Ellipsis />
-
-            <Pagination.Item>{10}</Pagination.Item>
-            <Pagination.Item>{11}</Pagination.Item>
-            <Pagination.Item active>{12}</Pagination.Item>
-            <Pagination.Item>{13}</Pagination.Item>
-            <Pagination.Item disabled>{14}</Pagination.Item>
-
-            <Pagination.Ellipsis />
-            <Pagination.Item>{15}</Pagination.Item>
+            <Pagination.Item active>{2}</Pagination.Item>
+            <Pagination.Item>{3}</Pagination.Item>
             <Pagination.Next />
             <Pagination.Last />
           </Pagination>

@@ -32,12 +32,10 @@ export const loginUser = async (user, dispatch, navigate) => {
       });
     }
 
-
   } catch (error) {
     dispatch(loginFailed());
     toast.error("Đăng nhập thất bại", {
       autoClose: 1000,
-
     });
   }
 }

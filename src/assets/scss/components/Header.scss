@@ -38,6 +38,11 @@
     padding: 0 18px;
     position: relative;
 
+    .box-info-wrap {
+      position: absolute;
+      right: 120%;
+    }
+
     &:hover {
       cursor: pointer;
     }

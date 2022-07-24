@@ -63,7 +63,7 @@
       }
 
       &__calendar {
-        background-color: var(--white);
+        background: var(--blue02);
         display: flex;
         justify-content: space-between;
         padding: 20px;
@@ -72,9 +72,8 @@
         box-shadow: 0px 1px 0px rgb(0 0 0 / 10%);
 
         .calendar-work {
-          background: var(--blue02);
           width: 80%;
-          padding: 20px;
+          padding: 0 20px;
           position: relative;
 
           &__title {
@@ -88,13 +87,18 @@
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
+            padding: 0;
           }
+        }
 
-          &__btn {
-            position: absolute;
-            bottom: 0;
-            margin-bottom: 10px;
-          }
+        label {
+          font-size: 20px;
+          padding: 0 10px;
+          background: var(--blue02);
+        }
+
+        input {
+          font-size: 14px;
         }
       }
 
@@ -136,17 +140,52 @@
   }
 }
 
-@media (max-width: 920px) {
-  .doctor-detail-wrap {
-    .doctor-detail {
-      &__info {
-        flex-direction: column;
+@media (max-width: 760px) {
+  .doctor-detail {
+    &__info {
+      flex-direction: column;
 
-        .doctor__info {
-          margin: 0 !important;
-          &__specializations {
-            max-width: 350px !important;
+      .doctor__info {
+        margin: 0 !important;
+        &__specializations {
+          max-width: 350px !important;
+        }
+      }
+    }
+    &__calendar {
+      flex-direction: column-reverse;
+
+      .calendar-work {
+        margin-top: 20px;
+        padding: 0 !important;
+        width: 100% !important;
+
+        &__title {
+          font-size: 16px !important;
+          padding-bottom: 5px !important;
+        }
+
+        &__list {
+          justify-content: space-around;
+
+          .btn-select-date-time {
+            width: 23%;
+            margin: 0 !important;
+            padding: 5px 7px !important;
+
+            &--active {
+              width: 23%;
+              margin: 0 !important;
+              padding: 5px 7px !important;
+              &:hover {
+                padding: 5px 7px !important;
+              }
+            }
           }
+        }
+
+        .booking-text {
+          font-size: 14px;
         }
       }
     }

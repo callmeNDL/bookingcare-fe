@@ -92,10 +92,48 @@
           &--new {
             background-color: rgb(53, 195, 131);
           }
-          &--confirm {
+          &--confirmed {
             background-color: rgb(240, 242, 128);
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .booking-detail {
+    padding: 10px 5px;
+
+    &__content {
+      border-radius: 5px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .code-box {
+        padding: 0 3px;
+
+        .code {
+          max-width: 300px;
+        }
+      }
+      .booking-info {
+        &__wrap {
+          margin: 10px;
+
+          .title {
+            font-size: 12px;
+          }
+
+          .text {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .booking-info {
+        width: 100%;
       }
     }
   }

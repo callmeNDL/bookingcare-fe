@@ -11,20 +11,7 @@ function Profile() {
   function MouseOver() {
     setSetting(true)
   }
-  function MouseOut() {
-    setSetting(false)
-  }
   const user = useSelector((state) => state.auth.login.currentUser);
-
-  // const fetchUser = async () => {
-  //   const res = await userServices.fetchUser(user.id)
-  //   console.log(res);
-  // }
-
-  useEffect(() => {
-
-  }, [user])
-
 
   return (
     <div className="container">
@@ -47,7 +34,7 @@ function Profile() {
             <div className="name-profile">
               <p>{user?.HoTen}</p>
               <div className='setting'>
-                <SettingsIcon className="icon" onMouseOver={MouseOver} onClickOutSide={MouseOut} />
+                <SettingsIcon className="icon" onMouseOver={MouseOver} />
                 {setting ? <div className='dropdown-setting' onClick={() => { navigate('/thong-tin-ca-nhan/a') }}>
                   Sửa thông tin
                 </div> : ""}

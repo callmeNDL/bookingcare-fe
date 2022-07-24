@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Menu from "~/components/Menu";
 import ModalLogin from "./ModalLogin";
 import ModalRegister from "./ModalRegister";
@@ -13,6 +13,23 @@ const Header = () => {
   const handleLogin = (username, password) => {
     console.log(username, password);
   }
+
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (event) => {
+      if (!menuRef.current?.contains(event.target)) {
+        setActiveProfile(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
+    return () => {
+      document.removeEventListener("mousedown", handler)
+    };
+  })
+
+
+
   return (
     <>
       <div className='bg-main'>
@@ -30,7 +47,7 @@ const Header = () => {
             {user
               ? <div className='user'>
                 <span className='user__register' onClick={() => { setActiveProfile(!activeProfile) }}>Hi, {user.HoTen}</span>
-                {activeProfile ? <BoxInfo /> : ""}
+                {activeProfile ? <div className="box-info-wrap" ref={menuRef}><BoxInfo /></div> : ""}
               </div>
               : <div className='user'>
                 <span className='user__register'><ModalRegister /></span>

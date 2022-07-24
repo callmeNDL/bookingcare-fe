@@ -17,7 +17,9 @@ const HisotoryBooking = () => {
 
   useEffect(() => {
     handleGetHistory();
-  }, [user])
+  }, [])
+
+  console.log(listBooking);
 
 
   return (
@@ -51,9 +53,9 @@ const HisotoryBooking = () => {
                     <div className='month-year'>{item.NgayDL.slice(0, 7)} {item.ThoiGian.slice(0, 5)}</div>
                   </div>
                   <div className='info'>
-                    <div className='user-name'>{item.userData.HoTen}</div>
-                    <span className='info-doctor'>Được thăm khám bởi bác sĩ {item.doctorData.HoTen}</span>
-                    <div className='hospital-name'>Phòng khám Đa Khoa Y khoa Hà Nội</div>
+                    <div className='user-name'>{item.User?.HoTen}</div>
+                    <span className='info-doctor'>Được thăm khám bởi bác sĩ {item.Doctor?.HoTen}</span>
+                    <div className='hospital-name'>Phòng khám Đa Khoa Y khoa STU</div>
                   </div>
                   <div className='status-box'>
                     <span className={`status status--${item.TrangThai}`}>{item.TrangThai}</span>

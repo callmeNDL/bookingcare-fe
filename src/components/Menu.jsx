@@ -5,10 +5,18 @@ import { ReactComponent as Setting } from '../assets/icons/setting.svg';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from "~/apiServices/authServices";
+import { useDispatch } from 'react-redux';
+import ModalLogin from './ModalLogin';
+import ModalRegister from './ModalRegister';
 const Menu = () => {
   const [isActive, setIsActive] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+
+  const user = useSelector((state) => state.auth.login.currentUser);
+
 
   const handleActiveMenu = () => {
     setIsActive(true)
@@ -17,9 +25,8 @@ const Menu = () => {
     setIsActive(false)
   }
 
-  const hanldLogin = () => {
-    console.log("login");
-  }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
   return (
@@ -49,17 +56,28 @@ const Menu = () => {
               <Modal.Header closeButton onClick={handleCloseMenu}>
               </Modal.Header>
               <Modal.Body>
-                <div className='user'>
-                  <span className='user__register'>Đăng ký</span>
-                  <div className='space'></div>
-                  <span className='user__login' onClick={hanldLogin}>Đăng nhập</span>
-                </div>
+                {!user
+                  ? <div className='user'>
+                    <span className='user__register'><ModalRegister /></span>
+                    <div className='space'></div>
+                    <span className='user__login'><ModalLogin /></span>
+                  </div>
+                  : <div className='user'>
+                    <span className='user__register user__register--mobile'>Hi {user?.HoTen}</span>
+                  </div>
+                }
+
                 <ul className="menu">
-                  <li className='menu__item'>Trang chủ</li>
-                  <li className='menu__item'>Đặt lịch</li>
-                  <li className='menu__item'>Cộng đồng</li>
-                  <li className='menu__item'>Cẩm nang</li>
-                  <li className='menu__item'>Chuyên khoa</li>
+                  <li className='menu__item'><Link to='/' className='link'>Trang chủ</Link></li>
+                  <li className='menu__item'><Link to='/doctor' className='link'>Đặt lịch</Link></li>
+                  <li className='menu__item'><Link to='/' className='link'>Cộng đồng</Link></li>
+                  <li className='menu__item'><Link to='/' className='link'>Cẩm nang</Link></li>
+                  <li className='menu__item'><Link to='/' className='link'>Chuyên khoa</Link></li>
+                  <li className='menu__item'><Link to='/thong-tin-ca-nhan' className='link'>Thông tin cá nhân</Link></li>
+                  <li className='menu__item'><Link to='/historyBooking' className='link'>Lịch sử khám bệnh</Link></li>
+                  <li className='menu__item'><Link to='/ho-so-suc-khoe' className='link'>Hô sơ sức khoẻ</Link></li>
+                  <li className='menu__item link' onClick={() => { logout(dispatch, navigate) }}>Đăng xuất</li>
+
                 </ul>
                 <div className='support'>
                   <div className='support__hotline'>

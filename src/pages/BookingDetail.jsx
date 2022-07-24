@@ -74,7 +74,7 @@ const BookingDetail = () => {
             <div className='booking-info__wrap'>
               <div className="row mb-3">
                 <div className='title col-4'>Cở sở y tế</div>
-                <div className='user-name col-8'>PHÒNG KHÁM ĐA KHOA Y KHOA HÀ NỘI</div>
+                <div className='user-name col-8'>Phòng khám Đa Khoa Y khoa STU</div>
               </div>
               <div className="row  mb-3">
                 <div className='title col-4'>Địa chỉ</div>

@@ -249,3 +249,18 @@
     }
   }
 }
+@media (max-width: 760px) {
+  .modal-login {
+    width: 100% !important;
+    display: flex;
+    margin-left: 0 !important;
+    padding: 5px 10px;
+
+    .login__form {
+      width: 100%;
+    }
+    .login__info {
+      display: none;
+    }
+  }
+}

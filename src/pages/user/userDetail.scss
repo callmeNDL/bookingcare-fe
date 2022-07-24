@@ -218,3 +218,41 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .link,
+  .link--active {
+    font-size: 12px;
+  }
+  .user-detail {
+    &__info {
+      width: 100%;
+
+      form {
+        .title {
+          font-size: 16px;
+        }
+
+        .upload {
+          .upload-img-input {
+            font-size: 14px;
+          }
+
+          .detail-info {
+            width: 100%;
+
+            .item-info {
+              .item-name {
+                font-size: 12px;
+              }
+
+              .item-value {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

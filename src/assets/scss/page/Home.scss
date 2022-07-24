@@ -435,4 +435,61 @@
       }
     }
   }
+
+  .search {
+    &__box {
+      margin: 20px 0 10px;
+      width: 350px;
+      &__input {
+        font-size: 12px;
+      }
+
+      &__button {
+        font-size: 12px;
+        width: 70px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        .btn-search {
+          display: none;
+        }
+      }
+    }
+    &__banner {
+      display: none;
+    }
+
+    .search__list {
+      &__item {
+        font-size: 12px;
+      }
+    }
+
+    &__top {
+      overflow: hidden;
+
+      &__title {
+        width: 100%;
+        padding: 0;
+        h2 {
+          font-size: 18px;
+        }
+      }
+
+      &__slider {
+        position: relative;
+        overflow: hidden;
+        width: 800px;
+        padding: 0;
+      }
+    }
+  }
+
+  .disc-wrap {
+    p {
+      width: 100%;
+      padding: 20px 5px !important;
+    }
+  }
 }

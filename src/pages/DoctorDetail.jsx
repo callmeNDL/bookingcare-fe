@@ -8,6 +8,11 @@ import * as source from '~/source'
 import { useDispatch } from 'react-redux';
 import { addBooking } from '~/redux/bookingSlide';
 import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 const DoctorDetail = () => {
   const [date, setDate] = useState(new Date());
@@ -15,10 +20,11 @@ const DoctorDetail = () => {
   const [dataDoctor, setDataDoctor] = useState([]);
   const [dataSchedule, setDataSchedule] = useState([]);
   const [booking, setBooking] = useState(false);
-  const [login, setLogin] = useState(false);
   const [bookingTime, setBookingTime] = useState("");
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+
 
   const handleActive = (time) => {
     setBooking(true)
@@ -35,21 +41,22 @@ const DoctorDetail = () => {
     navigate('/booking')
   }
 
+
   useEffect(() => {
+    setBooking(false)
     const fetchApi = async () => {
       const result = await doctorServices.fetchDoctor(doctorID);
       if (result) {
         setDataDoctor(result);
-        const schedule = await doctorServices.fetchScheduleDoctor(result.MaBS);
-        console.log(schedule);
+        let dateWork = date.toISOString().substring(0, 10);
+        const schedule = await doctorServices.fetchScheduleDoctor(result.MaBS, dateWork);
         setDataSchedule(schedule)
       } else {
         navigate(`/404`);
       }
     }
     fetchApi();
-  }, [])
-
+  }, [date])
 
 
   return (
@@ -60,7 +67,7 @@ const DoctorDetail = () => {
             <img src={dataDoctor.HinhAnh} className="img-fluid doctor-detail__info__img" alt={'avatar '.concat(dataDoctor.HoTen)} />
             <ul className="doctor__info">
               <li href='#' className='doctor__info__name' >{dataDoctor.HoTen}</li>
-              <li className='doctor__info__hospital'>Bệnh viện Hữu Nghị Việt Đức</li>
+              <li className='doctor__info__hospital'>Phòng khám Đa Khoa Y khoa STU</li>
               <li className='doctor__info__item doctor__info__specializations'>
                 <span className='title'>Chuyên Ngành:</span>{dataDoctor.ChuyenNganh}
               </li>
@@ -91,11 +98,21 @@ const DoctorDetail = () => {
                   <span className='booking-text'>{`Đặt khám ${bookingTime}`}</span>
                 </button>
                   : ""}
-
-
               </div>
             </div>
-            <Calendar onChange={setDate} value={date} />
+            <div className='date'>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="Thời gian làm việc"
+                  value={date}
+                  onChange={(newValue) => {
+                    setDate(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
+
           </div>
           <div className="doctor-detail__exp">
             <h4 className='doctor-detail__exp__title'>Kinh nghiệm khám chữa bệnh</h4>

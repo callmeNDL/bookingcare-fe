@@ -6,6 +6,7 @@ export const fetchDoctor = async (q) => {
     const res = await request.get("doctor", {
       params: {
         id: q,
+
       },
     });
     return res.doctors
@@ -14,13 +15,15 @@ export const fetchDoctor = async (q) => {
   }
 }
 
-export const fetchScheduleDoctor = async (q) => {
+export const fetchScheduleDoctor = async (MaBS, NgayKham) => {
   try {
-    const res = await request.get("schedule", {
+    const res = await request.get("schedule/get-with-dateBS", {
       params: {
-        MaBS: q,
+        MaBS: MaBS,
+        NgayKham: NgayKham,
       },
     });
+    console.log(res);
     return res.schedules
   } catch (error) {
     console.log(error);

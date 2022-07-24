@@ -13,6 +13,7 @@ import UserDetail from "./pages/user/UserDetail";
 import HisotoryBooking from "./pages/HisotoryBooking";
 import BookingDetail from "./pages/BookingDetail";
 import VerifyBooking from "./pages/VerifyBooking";
+import HistoryMedical from "./pages/medical/HistoryMedical";
 
 function App() {
 
@@ -35,11 +36,8 @@ function App() {
         <Route exact path="/hospital" element={<Hospital />} />
         <Route exact path="/booking" element={<Booking />} />
         <Route exact path="/search" element={<Search />} />
+        <Route exact path="/ho-so-suc-khoe" element={<HistoryMedical />} />
         <Route exact path="/404" element={<PageNotFound />} />
-        {/* <Route path="verify-booking">
-          <Route index element={<HisotoryBooking />} />
-          <Route path=":maDL" element={<BookingDetail />} />
-        </Route> */}
         <Route exact path="/verify-booking/:token&:MaDL" element={<VerifyBooking />} />
       </Routes>
     </AppLayout>

@@ -11,17 +11,18 @@ import axios from 'axios';
 const UserDetail = () => {
   const [file, setFile] = useState("");
   const user = useSelector((state) => state.auth.login.currentUser);
-  const { register, handleSubmit, formState: { errors }, } = useForm({ defaultValues: user });
   const [update, setUpdate] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // console.log(user);
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       setUpdate(true);
       let urlHinhAnh = '';
       if (file.length !== 0) {
+        console.log("uphinh");
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "rl8qs3p5");
@@ -39,6 +40,9 @@ const UserDetail = () => {
       toast.error(error.data)
     }
   };
+
+  const { register, handleSubmit, formState: { errors }, } = useForm({ defaultValues: user });
+
 
   return (
     <div className="container">
@@ -155,13 +159,12 @@ const UserDetail = () => {
                 <div className="item-info">
                   <div className="item-name">Giới tính</div>
                   <div className='item-gioitinh'>
-                    <select className='select-gioitinh' {...register('GioiTinh', { required: "Không bỏ trống." })}>
-                      <option className='option-gioitinh' value="true">Nam</option>
-                      <option className='option-gioitinh' value="false">Nữ</option>
+                    <select className='select-gioitinh' {...register('GioiTinh')}>
+                      <option className='option-gioitinh' value={true}>Nam</option>
+                      <option className='option-gioitinh' value={false}>Nữ</option>
                     </select>
                   </div>
                 </div>
-                {errors.GioiTinh?.message && <p className="error-input-login err-user">{errors.GioiTinh?.message}</p>}
 
                 <div className="item-info">
                   <div className="item-name">Số CMND</div>

@@ -118,3 +118,32 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .profile {
+    &__title {
+      font-size: 18px;
+    }
+    &__content {
+      max-width: 100%;
+
+      &__general {
+        .name-profile {
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .detail-info {
+        .item-info {
+          .item-name {
+            font-size: 12px;
+          }
+          .item-value {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

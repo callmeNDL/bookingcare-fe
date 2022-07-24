@@ -101,8 +101,8 @@ const Booking = () => {
             <textarea name="booking-decs" placeholder="Mô tả triệu chứng... " value={decs} onChange={(e) => setDecs(e.target.value)} />
           </div>
           <div className='booking__button'>
-            <button className={loadding ? 'btn-booking--loading' : 'btn-booking'} onClick={handleBooking}>{loadding && <LoopIcon className='icon' />} ĐẶT KHÁM</button>
-            <button className="btn-booking--fail" onClick={handleBooking}>HUỶ</button>
+            <button className={loadding ? 'btn-booking btn-booking--loading' : 'btn-booking'} onClick={handleBooking}>{loadding && <LoopIcon className='icon' />} ĐẶT KHÁM</button>
+            <button className="btn-booking btn-booking--fail" onClick={handleBooking}>HUỶ</button>
           </div>
         </div>
       </div>

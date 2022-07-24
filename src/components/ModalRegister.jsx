@@ -37,7 +37,6 @@ const ModalRegister = (props) => {
     uid = uid + 100000
   }
 
-
   return (
     <div className="">
       <div variant="primary" onClick={handleShow}>
