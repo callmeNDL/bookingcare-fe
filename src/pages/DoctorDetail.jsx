@@ -17,9 +17,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 const DoctorDetail = () => {
   const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+
   const { doctorID } = useParams();
   const [dataDoctor, setDataDoctor] = useState([]);
   const [dataSchedule, setDataSchedule] = useState([]);
@@ -32,23 +40,30 @@ const DoctorDetail = () => {
 
   const handleChange = (event) => {
     setTimeSelect(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleActive = (time) => {
     setBooking(true)
     setBookingTime(time);
+
+  }
+  const handleAccess = () => {
+    setOpen(true);
   }
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleBooking = () => {
     let timeCurrent = new Date();
-    console.log("check date", date.toLocaleDateString());
     if (date.toISOString().substring(0, 10) < timeCurrent.toISOString().substring(0, 10)) {
+      setOpen(false);
       return toast.error("Chỉ được đặt lịch trước thời gian hiện tại")
     } else if (date.toISOString().substring(0, 10) <= timeCurrent.toISOString().substring(0, 10)) {
       if (bookingTime) {
         if (bookingTime.substring(8, 13) <= timeCurrent.toLocaleTimeString()) {
+          setOpen(false);
           return toast.error("Chỉ được đặt lịch trước thời gian hiện tại", { autoClose: 1000, });
         } else if (bookingTime.substring(0, 5) <= timeCurrent.toLocaleTimeString() && timeCurrent.toLocaleTimeString() <= bookingTime.substring(8, 13)) {
           return toast.error(`Đặt trước ${bookingTime}`, { autoClose: 1000, });
@@ -69,6 +84,7 @@ const DoctorDetail = () => {
               navigate('/booking')
             }
             else {
+              setOpen(false);
               toast.error("Thời gian không hợp lệ")
             }
           } else {
@@ -116,6 +132,7 @@ const DoctorDetail = () => {
   }, [date])
 
   useEffect(() => {
+    setOpen(false);
     setTimeSelect('0')
   }, [bookingTime])
 
@@ -152,7 +169,7 @@ const DoctorDetail = () => {
                 })}
               </ul>
               <div>
-                {booking ? <button className="doctor__button calendar-work__btn link" onClick={handleBooking}>
+                {booking ? <button className="doctor__button calendar-work__btn link" onClick={handleAccess}>
                   <img className='booking-img' src={IconBooking} alt='icon-booking' />
                   <span className='booking-text'>{`Đặt khám ${bookingTime}`}</span>
                 </button>
@@ -210,6 +227,28 @@ const DoctorDetail = () => {
             </ul>
           </div>
         </div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" sx={{ fontSize: '20px' }}>
+            {"Xác nhận chọn lịch khám?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description" sx={{ fontSize: '16px' }}>
+              {console.log(timeSelect)}
+              {timeSelect !== '0' ? "Bạn đồng ý với việc bạn sẽ đi khám đúng giờ đã chọn!" : "Bạn không chọn giờ yêu đồng nghĩ với việc bạn sẽ đi khám trước ca khám 30ph!"}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleBooking} sx={{ fontSize: '14px' }}>Đồng ý</Button>
+            <Button onClick={handleClose} sx={{ fontSize: '14px' }} autoFocus>
+              Không đồng ý
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div >
   )

@@ -10,8 +10,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { cancelBooking } from '~/apiServices/bookingServices';
 import { toast } from 'react-toastify';
+import * as doctorServices from '~/apiServices/doctorServices';
+
 const BookingDetail = () => {
   const [dataBooking, setDataBooking] = useState({});
+  const [schedule, setSchedule] = useState({});
+
   const { maDL } = useParams();
 
   const navigate = useNavigate();
@@ -39,7 +43,6 @@ const BookingDetail = () => {
     }
   }
 
-
   const handleGetBooking = () => {
     const booking = bookings.find((item) => item.MaDL === maDL)
     if (!booking) {
@@ -48,11 +51,17 @@ const BookingDetail = () => {
     setDataBooking(booking)
   }
 
+  const handleGetSchedule = async () => {
+    const schedules = await doctorServices.fetchScheduleDoctor(bookings[0].MaBS, bookings[0].NgayDL)
+    const schedule = schedules.find((item) => item.CaKham == bookings[0].CaKham)
+    setSchedule(schedule)
+  }
+
+
   useEffect(() => {
     handleGetBooking()
+    handleGetSchedule()
   }, [])
-
-  console.log(bookings);
 
   return (
     <div className="container">
@@ -139,6 +148,10 @@ const BookingDetail = () => {
               <div className="row mb-3">
                 <div className='title col-4'>Cở sở y tế</div>
                 <div className='user-name col-8'>Phòng khám Đa Khoa Y khoa STU</div>
+              </div>
+              <div className="row mb-3">
+                <div className='title col-4'>Khám tại phòng</div>
+                <div className='user-name col-8'>{schedule?.MaPhong}</div>
               </div>
               <div className="row  mb-3">
                 <div className='title col-4'>Địa chỉ</div>
