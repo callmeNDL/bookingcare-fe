@@ -23,7 +23,6 @@ export const fetchScheduleDoctor = async (MaBS, NgayKham) => {
         NgayKham: NgayKham,
       },
     });
-    console.log(res);
     return res.schedules
   } catch (error) {
     console.log(error);

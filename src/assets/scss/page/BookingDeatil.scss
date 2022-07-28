@@ -32,6 +32,32 @@
           color: teal;
         }
       }
+
+      .cancel-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        &__title {
+          margin: 30px 0 10px;
+          font-size: 16px;
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #d32f2f;
+        }
+
+        &__button {
+          border: none;
+          display: flex;
+          margin: 0 auto;
+          font-size: 14px;
+          background: red;
+          padding: 5px 20px;
+          color: wheat;
+          font-weight: bold;
+          border-radius: 10px;
+        }
+      }
     }
 
     .booking-info {
@@ -67,6 +93,10 @@
             padding: 0 15px;
             font-weight: 700;
           }
+
+          .date {
+            margin-left: 20px;
+          }
         }
         .status {
           display: flex;
@@ -83,7 +113,6 @@
           font-weight: bold;
           font-size: 14px;
           line-height: 15px;
-          background-color: rgba(237, 24, 70, 0.1);
 
           &--fail {
             color: rgb(237, 24, 70);
@@ -92,8 +121,17 @@
           &--new {
             background-color: rgb(53, 195, 131);
           }
+
           &--confirmed {
             background-color: rgb(240, 242, 128);
+          }
+
+          &--waiting {
+            background-color: #2196f3;
+          }
+
+          &--cancel {
+            color: #607d8b;
           }
         }
       }

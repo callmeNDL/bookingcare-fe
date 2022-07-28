@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as bookingServices from '../apiServices/bookingServices'
 const VerifyBooking = () => {
@@ -7,7 +7,7 @@ const VerifyBooking = () => {
 
   const resultVerify = async (token, MaDL) => {
     let data = { token, MaDL };
-    let result = await bookingServices.verifyBooking(data)
+    let result = await bookingServices.verifyBookings(data)
     setVerify(result)
     return result;
   }
@@ -24,4 +24,4 @@ const VerifyBooking = () => {
   )
 }
 
-export default VerifyBooking
+export default memo(VerifyBooking)

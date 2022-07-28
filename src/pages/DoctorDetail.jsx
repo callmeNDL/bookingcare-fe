@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
 import { useParams } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css'
 import * as doctorServices from '~/apiServices/doctorServices';
@@ -12,7 +11,12 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import { toast } from 'react-toastify';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const DoctorDetail = () => {
   const [date, setDate] = useState(new Date());
@@ -24,26 +28,79 @@ const DoctorDetail = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  const [timeSelect, setTimeSelect] = useState('0');
 
+  const handleChange = (event) => {
+    setTimeSelect(event.target.value);
+    // console.log(event.target.value);
+  };
 
   const handleActive = (time) => {
     setBooking(true)
     setBookingTime(time);
   }
 
+
   const handleBooking = () => {
-    const bookingData = {
-      doctor: dataDoctor.id,
-      date: date.toISOString().substring(0, 10),
-      time: bookingTime,
+    let timeCurrent = new Date();
+    console.log("check date", date.toLocaleDateString());
+    if (date.toISOString().substring(0, 10) < timeCurrent.toISOString().substring(0, 10)) {
+      return toast.error("Chỉ được đặt lịch trước thời gian hiện tại")
+    } else if (date.toISOString().substring(0, 10) <= timeCurrent.toISOString().substring(0, 10)) {
+      if (bookingTime) {
+        if (bookingTime.substring(8, 13) <= timeCurrent.toLocaleTimeString()) {
+          return toast.error("Chỉ được đặt lịch trước thời gian hiện tại", { autoClose: 1000, });
+        } else if (bookingTime.substring(0, 5) <= timeCurrent.toLocaleTimeString() && timeCurrent.toLocaleTimeString() <= bookingTime.substring(8, 13)) {
+          return toast.error(`Đặt trước ${bookingTime}`, { autoClose: 1000, });
+
+        } else {
+          if (timeSelect !== '0') {
+            console.log(timeSelect.substring(0, 2));
+            console.log(date.getHours());
+            if (timeSelect.substring(0, 2) > date.getHours()) {
+              toast.success("Thời gian hợp lệ")
+              const bookingData = {
+                doctor: dataDoctor.id,
+                date: date.toISOString().substring(0, 10),
+                CaKham: bookingTime,
+                timeSelect: timeSelect
+              }
+              dispatch(addBooking(bookingData))
+              navigate('/booking')
+            }
+            else {
+              toast.error("Thời gian không hợp lệ")
+            }
+          } else {
+            const bookingData = {
+              doctor: dataDoctor.id,
+              date: date.toISOString().substring(0, 10),
+              CaKham: bookingTime,
+              timeSelect: timeSelect
+            }
+            dispatch(addBooking(bookingData))
+            navigate('/booking')
+          }
+        }
+      }
+    } else {
+      const bookingData = {
+        doctor: dataDoctor.id,
+        date: date.toISOString().substring(0, 10),
+        CaKham: bookingTime,
+        timeSelect: timeSelect
+      }
+      dispatch(addBooking(bookingData))
+      navigate('/booking')
     }
-    dispatch(addBooking(bookingData))
-    navigate('/booking')
+
   }
 
 
   useEffect(() => {
     setBooking(false)
+    setBookingTime("")
+    setTimeSelect('0')
     const fetchApi = async () => {
       const result = await doctorServices.fetchDoctor(doctorID);
       if (result) {
@@ -58,6 +115,9 @@ const DoctorDetail = () => {
     fetchApi();
   }, [date])
 
+  useEffect(() => {
+    setTimeSelect('0')
+  }, [bookingTime])
 
   return (
     <div className="doctor-detail-wrap bg-gray2">
@@ -73,7 +133,6 @@ const DoctorDetail = () => {
               </li>
               <li className='doctor__info__item'><span className='title'>Email:</span>{dataDoctor.email}</li>
               <li className='doctor__info__item'><span className='title'>Số điện thoại:</span>0{dataDoctor.SDT}</li>
-
             </ul>
           </div>
           <div className="doctor-detail__calendar">
@@ -111,6 +170,32 @@ const DoctorDetail = () => {
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>
+              {bookingTime && <div className='select-time'>
+                <Box sx={{ maxWidth: 200, marginTop: '10px', fontSize: '14px' }} >
+                  <FormControl fullWidth >
+                    <InputLabel id="demo-simple-select-label"><div className='title-select'>Chọn giờ yêu cầu</div></InputLabel>
+                    <Select
+                      sx={{ fontSize: '14px' }}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={timeSelect}
+                      label="Chọn khung giờ yêu cầu"
+                      onChange={handleChange}
+                    >
+                      {bookingTime === '08:00 - 11:00' && <MenuItem className='item' value='08:00'>08:00</MenuItem>}
+                      {bookingTime === '08:00 - 11:00' && <MenuItem className='item' value='09:00'>09:00</MenuItem>}
+                      {bookingTime === '08:00 - 11:00' && <MenuItem className='item' value='10:00'>10:00</MenuItem>}
+                      {bookingTime === '08:00 - 11:00' && <MenuItem className='item' value='11:00'>11:00</MenuItem>}
+                      {bookingTime === '13:00 - 16:00' && <MenuItem className='item' value='13:00'>13:00</MenuItem>}
+                      {bookingTime === '13:00 - 16:00' && <MenuItem className='item' value='14:00'>14:00</MenuItem>}
+                      {bookingTime === '13:00 - 16:00' && <MenuItem className='item' value='15:00'>15:00</MenuItem>}
+                      {bookingTime === '13:00 - 16:00' && <MenuItem className='item' value='16:00'>16:00</MenuItem>}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>}
+
+
             </div>
 
           </div>
@@ -126,7 +211,7 @@ const DoctorDetail = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

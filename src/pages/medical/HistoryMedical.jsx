@@ -8,7 +8,7 @@ import { times } from '~/source';
 function HistoryMedical() {
   const user = useSelector((state) => state.auth.login.currentUser);
   const [listBooking, setListBooking] = useState([]);
-  const [isAcitve, setIsActive] = useState(false);
+  const [isAcitve, setIsActive] = useState(true);
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,25 +34,18 @@ function HistoryMedical() {
   }
 
 
-
   const handleGetHistory = async () => {
     const history = await bookingServices.fetchHistoryBooking(user.MaUser, dispatch)
     setListBooking(history.bookings);
   }
 
-  const hanleActive = () => {
-    listBooking.map((item) => {
-      if (item.MedicalExamination) {
-        setIsActive(true)
-      }
-    })
-  }
 
   useEffect(() => {
     setIsActive(false)
     handleGetHistory();
-    hanleActive();
   }, [])
+
+  console.log(listBooking);
 
   return (
     <div className='container'>
@@ -64,10 +57,10 @@ function HistoryMedical() {
             <div className='profile-user__age'>{formatDate(user?.NgaySinh)} - {getAge(user?.NgaySinh)}tuổi</div>
           </div>
         </div>
-        <div className={isAcitve ? "histories__info--disable" : "histories__info"}>
+        {/* <div className={isAcitve ? "histories__info--disable" : "histories__info"}>
           <img src="https://ivie.vn/_next/static/not-ehealth.svg" alt="empty" />
           <p>Bạn chưa có hồ sơ sức khỏe từ PHÒNG KHÁM ĐA KHOA Y KHOA STU, <br />phòng khám đối tác của ISOFHCARE.</p>
-        </div>
+        </div> */}
 
         <div className='list-medical'>
           {listBooking.map((item) => {
@@ -82,16 +75,19 @@ function HistoryMedical() {
                         return <div className='time' key={time.key}>{time.value}</div>
                       }
                     })}
+
                   </div>
                   <div className='info'>
                     <div className='info__medical'>
                       <div className="name">{item.MedicalExamination?.TenPK}</div>
                       <div className='line'></div>
                       <div className='code'>Mã phiếu khám: <p>{item.MedicalExamination?.MaPK}</p></div>
+                      <div className='code'>Phòng khám: <p>{item.MedicalExamination?.MaPhong}</p></div>
+                      <div className='time-select'>Khung giờ dự kiến: <p>{item.MedicalExamination?.ThoiGianKham === '00:00:00' ? "Không đặt trước" : item.MedicalExamination?.ThoiGianKham.substring(0, 5)}</p></div>
                     </div>
                     <div className='info__user'>
                       <div className="name">{item.User?.HoTen}</div>
-                      <div className='code'>Mã bệnh nhân:{item.User?.MaUser}</div>
+                      <div className='code'>{`Mã bệnh nhân: ${item.User?.MaUser}`}</div>
                     </div>
                     <div className='info__decs'>{item.MedicalExamination.KetQua.length !== 0 ? "Đã hoàn thành khám bệnh" : "Chưa hoàn thành khám bệnh"}</div>
                   </div>

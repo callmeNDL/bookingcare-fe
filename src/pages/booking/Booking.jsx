@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import * as doctorServices from '~/apiServices/doctorServices';
 import * as bookingServices from '~/apiServices/bookingServices';
 import { useNavigate } from "react-router-dom";
 import LoopIcon from '@mui/icons-material/Loop';
-const { v4: uuidv4 } = require('uuid');
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const Booking = () => {
   const [booking, setBooking] = useState({});
   const [doctor, setDoctor] = useState({});
   const [decs, setDecs] = useState("");
-  const [loadding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  let [color, setColor] = useState("talet");
 
   let navigate = useNavigate();
 
@@ -28,20 +30,24 @@ const Booking = () => {
     fetchApi(data.doctor)
   }, [data]);
 
-
   const handleBooking = async () => {
     if (decs.length <= 0) {
-      toast.error("Nhập triệu chứng bệnh của bạn")
+      return toast.error("Nhập triệu chứng bệnh của bạn")
     } else {
       setLoading(true)
       var uid = Number((new Date().getTime()).toString().slice(-6));
-
+      let caKham = "";
+      if (booking.CaKham === "08:00 - 11:00") {
+        caKham = "Ca1"
+      } else {
+        caKham = "Ca2"
+      }
       const dataCreateBooking = {
         datasenMail: {
           email: user.email,
           dataSend: {
             patientName: user.HoTen,
-            time: `${booking.time}- Ngày -${booking.date}`,
+            time: `${booking.CaKham}- Ngày -${booking.date}`,
             doctorName: doctor.HoTen,
             redirectLink: ""
           }
@@ -50,9 +56,10 @@ const Booking = () => {
           "MaDL": uid,
           "MaUser": user.MaUser,
           "MaBS": doctor.MaBS,
-          "ThoiGian": booking.time,
+          "ThoiGian": booking.timeSelect,
           "NgayDL": booking.date,
           "TinhTrangBN": decs,
+          "CaKham": caKham,
           "TrangThai": "new"
         }
       }
@@ -63,16 +70,21 @@ const Booking = () => {
         setLoading(false)
         navigate('/historyBooking')
       }
+      else {
+        setLoading(false)
+        toast.error(res.errMessage);
+      }
     }
   }
 
   return (
     <>
       <div className="container">
+
         <div className="booking">
           <div className="booking__title">Thông tin đặt khám</div>
           <div className='booking__user'>
-            <img className='img-fluid img-user' src={user ? user.HinhAnh : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt='avatar'></img>
+            <img className='img-fluid img-user' src={user ? user?.HinhAnh : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt='avatar'></img>
             <div>
               <div className='booking__user__title'>Người tới khám</div>
               <h4 className='booking__user__username'>{user ? user.HoTen : ""}</h4>
@@ -83,9 +95,10 @@ const Booking = () => {
             <div className='booking__info__time'>
               <span className='title'>Giờ hẹn: </span>
               <div className='date-time'>
-                <div className='time'>{booking.time}</div>
+                <div className='time'>{booking.CaKham}</div>
                 <div className='date'>{booking.date}</div>
               </div>
+              <div className='time-select title'>Thời gian mong muốn:<span className='time-select__value'>{booking?.timeSelect}</span></div>
             </div>
             <div className='booking__info__doctor'>
               <img className='img-fluid img-user' src={doctor.HinhAnh ? `${doctor.HinhAnh}` : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt='avatar'></img>
@@ -101,11 +114,12 @@ const Booking = () => {
             <textarea name="booking-decs" placeholder="Mô tả triệu chứng... " value={decs} onChange={(e) => setDecs(e.target.value)} />
           </div>
           <div className='booking__button'>
-            <button className={loadding ? 'btn-booking btn-booking--loading' : 'btn-booking'} onClick={handleBooking}>{loadding && <LoopIcon className='icon' />} ĐẶT KHÁM</button>
-            <button className="btn-booking btn-booking--fail" onClick={handleBooking}>HUỶ</button>
+            {loading ? <ClipLoader className='btn-booking' color={color} loading={loading} size={50} /> : <button className='btn-booking' onClick={handleBooking}>{loading && <LoopIcon className='icon' />} ĐẶT KHÁM</button>}
+            {/* <button className="btn-booking btn-booking--fail" onClick={handleBooking}>HUỶ</button> */}
           </div>
         </div>
       </div>
+
     </>
   )
 }

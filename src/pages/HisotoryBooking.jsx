@@ -50,7 +50,7 @@ const HisotoryBooking = () => {
                 }}>
                   <div className='time'>
                     <div className='date'>{item.NgayDL.slice(-2)}</div>
-                    <div className='month-year'>{item.NgayDL.slice(0, 7)} {item.ThoiGian.slice(0, 5)}</div>
+                    <div className='month-year'>{item.NgayDL.slice(0, 7)} {item?.CaKham === "Ca1" ? "Sáng" : "Chiều"}</div>
                   </div>
                   <div className='info'>
                     <div className='user-name'>{item.User?.HoTen}</div>

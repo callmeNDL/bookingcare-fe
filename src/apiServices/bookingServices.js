@@ -4,6 +4,7 @@ import { addHistoryStart, addHistorySuccess, addHistoryFailed } from '~/redux/hi
 export const handleBooking = async (data) => {
   try {
     const res = await request.post("booking/create-bookingUser", data);
+    console.log(res);
     return res;
   } catch (error) {
     console.log(error);
@@ -50,12 +51,22 @@ export const fetchHistoryBooking = async (MaUser, dispatch) => {
   }
 }
 
-export const verifyBooking = async (data) => {
+export const verifyBookings = async (data) => {
   try {
     const res = await request.post("booking/verify-booking", data);
+    console.log("check call api");
     return res;
   } catch (error) {
     console.log(error);
   }
 }
 
+export const cancelBooking = async (data) => {
+
+  try {
+    const res = await request.put("booking/cancel-booking", data);
+    return res
+  } catch (error) {
+    console.log(error);
+  }
+}

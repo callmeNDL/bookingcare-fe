@@ -91,6 +91,20 @@
           }
         }
 
+        .date {
+          .select-time {
+            &__box {
+              label {
+                font-size: 14px !important;
+              }
+
+              .item {
+                font-size: 14px !important;
+              }
+            }
+          }
+        }
+
         label {
           font-size: 20px;
           padding: 0 10px;
@@ -137,6 +151,17 @@
         }
       }
     }
+  }
+}
+.MuiList-root {
+  .item {
+    font-size: 14px !important;
+  }
+  .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    font-size: 14px !important;
+  }
+  .title-select {
+    font-size: 14px;
   }
 }
 

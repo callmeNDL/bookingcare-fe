@@ -145,6 +145,19 @@
               font-weight: bold;
             }
           }
+          .time-select {
+            display: flex;
+
+            p {
+              padding: 0;
+              margin: 0;
+              margin-left: 10px;
+              font-size: 16px;
+              font-weight: bold;
+              margin-left: 10px;
+              margin-bottom: 20px;
+            }
+          }
         }
 
         &__user {

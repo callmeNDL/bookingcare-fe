@@ -101,6 +101,18 @@
           color: rgb(49, 97, 173);
         }
       }
+
+      .time-select {
+        margin-left: 20px;
+
+        &__value {
+          margin-left: 10px;
+          background: rgba(49, 97, 173, 0.1);
+          border-radius: 4px;
+          padding: 5px;
+          color: rgb(49, 97, 173);
+        }
+      }
     }
 
     &__doctor {

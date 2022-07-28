@@ -4,8 +4,9 @@ const bookingSlide = createSlice({
   name: "booking",
   initialState: {
     doctor: "",
-    time: "",
+    CaKham: "",
     date: "",
+    timeSelect: "",
     loading: false,
     error: ''
   },
@@ -13,7 +14,8 @@ const bookingSlide = createSlice({
     addBooking: (state, action) => {
       state.data = action.payload.booking;
       state.date = action.payload.date;
-      state.time = action.payload.time;
+      state.CaKham = action.payload.CaKham;
+      state.timeSelect = action.payload.timeSelect;
       state.doctor = action.payload.doctor;
     }
   },
