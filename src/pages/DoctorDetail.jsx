@@ -59,6 +59,7 @@ const DoctorDetail = () => {
     let timeCurrent = new Date();
     if (date.toISOString().substring(0, 10) < timeCurrent.toISOString().substring(0, 10)) {
       setOpen(false);
+
       return toast.error("Chỉ được đặt lịch trước thời gian hiện tại")
     } else if (date.toISOString().substring(0, 10) <= timeCurrent.toISOString().substring(0, 10)) {
       if (bookingTime) {
@@ -66,6 +67,7 @@ const DoctorDetail = () => {
           setOpen(false);
           return toast.error("Chỉ được đặt lịch trước thời gian hiện tại", { autoClose: 1000, });
         } else if (bookingTime.substring(0, 5) <= timeCurrent.toLocaleTimeString() && timeCurrent.toLocaleTimeString() <= bookingTime.substring(8, 13)) {
+          setOpen(false);
           return toast.error(`Đặt trước ${bookingTime}`, { autoClose: 1000, });
 
         } else {
@@ -211,8 +213,6 @@ const DoctorDetail = () => {
                   </FormControl>
                 </Box>
               </div>}
-
-
             </div>
 
           </div>

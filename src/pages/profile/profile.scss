@@ -93,6 +93,9 @@
       .item-info {
         display: flex;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        &:last-child {
+          border-bottom: none;
+        }
 
         .item-name {
           padding: 10px 0px 10px 20px;
@@ -125,6 +128,7 @@
     }
     &__content {
       max-width: 100%;
+      padding: 0;
 
       &__general {
         .name-profile {
@@ -141,6 +145,9 @@
           }
           .item-value {
             font-size: 12px;
+          }
+          &:last-child {
+            border-bottom: none;
           }
         }
       }

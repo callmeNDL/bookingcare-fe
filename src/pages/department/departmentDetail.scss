@@ -1,0 +1,100 @@
+.department-detail {
+  &__title {
+    margin: 20px 0 30px;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__content {
+    display: flex;
+    &__left {
+      padding: 0 10px;
+      width: 70%;
+
+      .desc {
+        margin: 10px 0;
+      }
+
+      .department-doctor {
+        &__title {
+          font-size: 20px;
+          margin: 20px 0;
+          font-weight: 500;
+        }
+
+        .item {
+          display: flex;
+          justify-content: space-around;
+          max-width: 500px;
+          align-items: center;
+          padding: 10px 20px;
+          margin-bottom: 20px;
+          box-shadow: rgba(70, 95, 84, 0.48) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+          &:hover {
+            box-shadow: rgba(28, 99, 80, 0.48) 0px 20px 30px -10px;
+          }
+          img {
+            width: 80px;
+            border-radius: 50%;
+            height: 80px;
+          }
+          .item-info {
+            margin-left: 10px;
+            &__name {
+              font-size: 16px;
+              font-weight: 600;
+            }
+            &__button {
+              margin-left: 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+
+              .icon {
+                font-size: 25px;
+              }
+
+              p {
+                position: absolute;
+                top: 100%;
+                width: 100px;
+                display: none;
+                text-align: center;
+              }
+
+              &:hover {
+                cursor: pointer;
+                p {
+                  display: block;
+                  color: teal;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__right {
+      margin-left: 40px;
+      width: 40%;
+
+      .list-department {
+        .item {
+          padding: 10px 0;
+          border-bottom: 1px solid #e7e7e7;
+
+          &:hover {
+            color: teal;
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

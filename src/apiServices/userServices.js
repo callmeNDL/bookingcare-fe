@@ -19,3 +19,16 @@ export const updateUser = async (data, dispatch, navigate) => {
     console.log(error);
   }
 }
+
+export const changePasswordUser = async (data, navigate) => {
+  try {
+    const res = await request.post("user/change-password-user", data);
+    if (res.errCode === 1) {
+      return toast.error(res.errMessage)
+    } else {
+      return res
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -46,7 +46,6 @@ const UserDetail = () => {
 
   return (
     <div className="container">
-      <div className='screen-loading'></div>
       <div className="user-detail">
         <ol className="list-link">
           <li>
@@ -153,7 +152,7 @@ const UserDetail = () => {
 
                 <div className="item-info">
                   <div className="item-name">Ngày sinh</div>
-                  <input type="date" className='item-info-date' {...register('NgaySinh', { required: "Không bỏ trống." })} />
+                  <input type="date" className='item-value item-info-date' {...register('NgaySinh', { required: "Không bỏ trống." })} />
                 </div>
                 {errors.NgaySinh?.message && <p className="error-input-login err-user">{errors.NgaySinh?.message}</p>}
                 <div className="item-info">

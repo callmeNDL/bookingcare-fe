@@ -1,0 +1,96 @@
+.modal-booking {
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 25px;
+    margin-bottom: 9px;
+  }
+  &__content {
+    background: rgba(219, 243, 232, 0.5);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+
+    &:hover {
+      transition: 0.4s;
+      box-shadow: rgb(38, 57, 77) 0px 10px 15px -10px;
+      cursor: pointer;
+    }
+
+    img {
+      margin: 0 auto;
+      display: flex;
+      max-width: 300px;
+    }
+
+    &__title {
+      font-size: 18px;
+      margin-top: 30px;
+      color: rgb(11, 152, 123);
+      font-weight: 500;
+    }
+  }
+
+  &__footer {
+    position: relative;
+    .text-description {
+      &::before {
+        content: '';
+        width: 150px;
+        height: 1px;
+        background: rgb(153, 153, 153);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 25%;
+      }
+
+      span {
+        padding: 0px 8px;
+        background: white;
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        min-width: 50px;
+      }
+    }
+
+    .text-hotline {
+      margin-top: 30px;
+
+      .icon {
+        font-size: 20px;
+      }
+
+      .phone {
+        margin-left: 5px;
+        font-size: 16px;
+        color: rgb(11, 152, 123);
+        font-weight: 500;
+      }
+    }
+  }
+}
+@media (max-width: 760px) {
+  .MuiPaper-root {
+    margin: 0 !important;
+  }
+  .modal-booking {
+    min-width: 300px;
+    &__content {
+      .img-item {
+        max-width: 200px;
+      }
+    }
+  }
+}

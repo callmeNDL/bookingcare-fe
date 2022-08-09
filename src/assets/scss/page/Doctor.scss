@@ -164,19 +164,7 @@
   .container {
     .pagination {
       display: flex;
-      justify-content: flex-end;
-      font-size: 14px;
-
-      a {
-        color: var(--textColor);
-      }
-
-      .active {
-        .page-link {
-          background-color: var(--mainColor);
-          border-color: var(--mainColor);
-        }
-      }
+      justify-content: center;
     }
   }
 }
@@ -215,6 +203,15 @@
       &__img {
         max-width: 80%;
         min-height: 145px;
+      }
+
+      &__info {
+        &__name {
+          font-size: 16px;
+        }
+        &__hospital {
+          font-size: 14px;
+        }
       }
     }
   }

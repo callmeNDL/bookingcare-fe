@@ -82,9 +82,13 @@ const BookingDetail = () => {
 
             <div className='cancel-box'>
               <div className='cancel-box__title'> Huỷ đăng ký đặt lịch</div>
-              <Button variant="contained" size="large" color="error" onClick={handleClickOpen}>
-                Huỷ lịch hẹn
-              </Button>
+              {dataBooking?.TrangThai === 'waiting'
+                ? ""
+                : <Button variant="contained" size="large" color="error" onClick={handleClickOpen}>
+                  Huỷ lịch hẹn
+                </Button>
+              }
+
               <Dialog
                 open={open}
                 onClose={handleClose}

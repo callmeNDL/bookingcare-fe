@@ -49,25 +49,16 @@ export const registerUser = async (user, dispatch, navigate) => {
       toast.error(res.data.errMessage, {
         position: "top-right",
         autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
       })
     } else {
       dispatch(registerSuccess());
       toast.success("Đã đăng ký thành công", {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
       });
+      console.log(res);
+      return res;
     }
-    return res;
   } catch (error) {
     dispatch(registerFailed());
   }
@@ -83,3 +74,4 @@ export const logout = async (dispatch, navigate) => {
     dispatch(loginFailed());
   }
 }
+

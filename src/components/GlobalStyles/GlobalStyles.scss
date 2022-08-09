@@ -8,6 +8,8 @@
 @import '../../assets/scss/components/Menu.scss';
 @import '../../assets/scss/components/ModalLogin.scss';
 @import '../../assets/scss/components/BoxInfo.scss';
+@import '../../assets/scss/components/ChangePassword.scss';
+@import '../../assets/scss/components/ModalBooking.scss';
 
 // Page
 @import '../../assets/scss/page/Home.scss';
@@ -23,6 +25,9 @@
 @import '../../pages/profile//profile.scss';
 @import '../../pages/user/userDetail.scss';
 @import '../../pages/medical/historyMedical.scss';
+@import '../../pages/handBook/handBook.scss';
+@import '../../pages/department/department.scss';
+@import '../../pages/department/departmentDetail.scss';
 
 // animation
 @import './animation.scss';
@@ -102,5 +107,42 @@ body {
   &:hover {
     color: teal;
     font-weight: bold;
+  }
+}
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.department {
+  .title {
+    display: block;
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    color: #404040;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &--xl {
+      border-bottom: 1px solid #e7e7e7;
+      font-size: 18px;
+    }
+    &--l {
+      font-size: 16px;
+    }
+    &--m {
+      font-size: 14px;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 10%;
+      height: 3px;
+      content: '';
+      background: linear-gradient(90deg, #009688 0, #009688 20%, #1de9b6);
+    }
   }
 }

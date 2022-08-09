@@ -69,10 +69,18 @@ const ModalLogin = (props) => {
                   type={showPassword ? 'password' : 'text'}
                   placeholder="Mật khẩu"
                   {...register('password', {
-                    required: "Không bỏ trống",
+                    required: "Không để trống.",
                     minLength: {
-                      value: 6,
-                      message: "Mật khẩu tối thiểu 6 ký tự"
+                      value: 8,
+                      message: "Tối thiểu 8 ký tự"
+                    },
+                    maxLength: {
+                      value: 8,
+                      message: "Tối đa 8 ký tự"
+                    },
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+                      message: "Mật khẩu phải gồm chữ thường, in hoa, sô"
                     }
                   })}
                 />

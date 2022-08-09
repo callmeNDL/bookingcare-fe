@@ -1,20 +1,46 @@
 import { ReactComponent as IconSearch } from '../assets/icons/search.svg';
 import IconBooking from '~/assets/icons/booking.png'
-import { Pagination } from 'react-bootstrap';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import { useEffect, useState } from 'react';
 import * as doctorServices from '~/apiServices/doctorServices';
 import { Link } from 'react-router-dom';
-const Doctor = (props) => {
-  const [allDoctor, setAllDoctor] = useState([]);
+import queryString from 'query-string'
+const Doctor = () => {
+  const [countPage, setCountPage] = useState(1);
+  const [doctors, setDoctors] = useState([]);
+  const [textSearch, setTextSearch] = useState("");
+
+  const [page, setPage] = useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+
+
+  const fetchDoctor = async () => {
+    const result = await doctorServices.fetchDoctorWithPage(page);
+    setDoctors(result);
+    let total = Math.floor(result.totalRow / 8);
+    if (result.totalRow % 8 > 0) {
+      total++;
+    }
+    setCountPage(total)
+  }
+
+  const handleSearch = async (e) => {
+    setTextSearch(e.target.value)
+  }
+
+  const handleActionSearch = async () => {
+    const paramsString = queryString.stringify(textSearch)
+    // const res = await doctorServices.searchDoctor(paramsString);
+    console.log(paramsString);
+  }
 
   useEffect(() => {
-    const fetchApi = async () => {
-      const result = await doctorServices.fetchDoctor("ALL");
-      setAllDoctor(result);
-    }
-    fetchApi();
-
-  }, [])
+    fetchDoctor()
+  }, [page])
 
   return (
     <>
@@ -28,9 +54,9 @@ const Doctor = (props) => {
             <div className="doctor-search__box">
               <div className='doctor-search__box__input'>
                 <IconSearch />
-                <input className='' type="text" placeholder='Tìm bác sĩ' />
+                <input className='' type="text" placeholder='Tìm bác sĩ' onChange={(e) => handleSearch(e)} />
               </div>
-              <button className='doctor-search__box__button'>Tìm kiếm</button>
+              <button className='doctor-search__box__button' onClick={handleActionSearch}>Tìm kiếm</button>
             </div>
           </div>
         </div>
@@ -39,7 +65,7 @@ const Doctor = (props) => {
         <div className='container'>
           <div className='doctors'>
             {
-              allDoctor.map((item) => {
+              doctors.data?.map((item) => {
                 return <div className='doctor' key={item.MaBS}>
                   <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
                   <div className='doctor__info'>
@@ -59,15 +85,11 @@ const Doctor = (props) => {
       </div>
       <div className='pagination-wrap bg-gray2'>
         <div className='container'>
-          <Pagination>
-            <Pagination.First />
-            <Pagination.Prev />
-            <Pagination.Item>{1}</Pagination.Item>
-            <Pagination.Item active>{2}</Pagination.Item>
-            <Pagination.Item>{3}</Pagination.Item>
-            <Pagination.Next />
-            <Pagination.Last />
-          </Pagination>
+          <div className='pagination'>
+            <Stack spacing={2}>
+              <Pagination count={countPage} page={page} onChange={handleChange} size="large" />
+            </Stack>
+          </div>
         </div>
       </div>
     </>

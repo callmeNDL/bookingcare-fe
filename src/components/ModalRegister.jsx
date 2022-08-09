@@ -1,8 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { Modal, Button, ModalBody } from "react-bootstrap";
-import { ReactComponent as Logo } from '../assets/img/logo.svg';
-import Login from '../assets/img/login.png';
 import { useForm } from 'react-hook-form';
 import { registerUser } from "~/apiServices/authServices";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,28 +12,48 @@ const ModalRegister = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let isRegister = useSelector((state) => state.auth.register)
-
+  var uid = Number((new Date().getTime()).toString().slice(-6));
+  if (uid < 99999) {
+    uid = uid + 100000
+  }
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const resetFrom = () => {
+    reset({
+      CMND: "",
+      DiaChi: "",
+      GioiTinh: "1",
+      HinhAnh: "",
+      HoTen: "",
+      MaChucVu: "BN",
+      MaUser: uid,
+      NgaySinh: "",
+      SDT: "",
+      email: "",
+      password: "",
+      username: "",
+    });
+  }
+
   const onSubmit = async (data) => {
     data.HinhAnh = "https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-580x440.png	"
     const res = await registerUser(data, dispatch, navigate)
 
-    if (!res.data.errCode === 0) {
+    console.log(res);
+    if (res.data.errCode === 0) {
       handleClose();
+      resetFrom()
     }
   }
-  var uid = Number((new Date().getTime()).toString().slice(-6));
-  if (uid < 99999) {
-    uid = uid + 100000
-  }
+
 
   return (
     <div className="">
@@ -66,6 +84,7 @@ const ModalRegister = (props) => {
                   value={uid}
                   {...register('MaUser')}
                 />
+
               </div>
               <div className="input-box--disable">
                 <label className="register__label">Hinh Anh</label>
@@ -100,14 +119,18 @@ const ModalRegister = (props) => {
                   type='number'
                   {...register('CMND',
                     {
-                      required: "Không bỏ trống.",
+                      required: "Không để trống.",
                       minLength: {
                         value: 9,
                         message: "CMND có tối thiểu 9 ký tự"
                       },
+                      maxLength: {
+                        value: 12,
+                        message: "CCCD có tối đa 12 ký tự"
+                      },
                       pattern: {
                         value: /^[0-9]{9}/,
-                        message: "Không nhập ký tự đặt biệt"
+                        message: "CMND chỉ chứa số (chỉ chứa số)"
                       }
                     }
                   )}
@@ -140,8 +163,8 @@ const ModalRegister = (props) => {
                         message: "SDT có tối đa 10 ký tự"
                       },
                       pattern: {
-                        value: /^[0-9]{10}/,
-                        message: "Chỉ nhập số vd(0328290432)"
+                        value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im,
+                        message: "Số điện thoại gồm 10 số"
                       }
                     }
                   )}
@@ -178,9 +201,9 @@ const ModalRegister = (props) => {
                   {...register('DiaChi',
                     {
                       required: "Không bỏ trống.",
-                      minLength: {
-                        value: 6,
-                        message: "Tối thiểu 6 ký tự"
+                      maxLength: {
+                        value: 255,
+                        message: "Tối thiểu 255 ký tự"
                       },
                     }
                   )}
@@ -215,14 +238,18 @@ const ModalRegister = (props) => {
                   type='text'
                   {...register('username',
                     {
-                      required: "Không bỏ trống.",
+                      required: "Không để trống.",
                       minLength: {
                         value: 6,
-                        message: "Tên nhập có tối thiểu 6 ký tự"
+                        message: "Tối thiểu 6 ký tự"
+                      },
+                      maxLength: {
+                        value: 30,
+                        message: "Tối đa 30 ký tự"
                       },
                       pattern: {
-                        value: /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/,
-                        message: "Không nhập ký tự đặt biệt"
+                        value: /^[a-zA-Z0-9]+$/,
+                        message: "Không chứa ký tự đặt biệt"
                       }
                     }
                   )}
@@ -235,10 +262,18 @@ const ModalRegister = (props) => {
                   className="register__input"
                   type="text"
                   {...register('password', {
-                    required: "Không bỏ trống",
+                    required: "Không để trống.",
                     minLength: {
-                      value: 6,
-                      message: "Mật khẩu tối thiểu 6 ký tự"
+                      value: 8,
+                      message: "Tối thiểu 8 ký tự"
+                    },
+                    maxLength: {
+                      value: 8,
+                      message: "Tối đa 8 ký tự"
+                    },
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+                      message: "Mật khẩu phải gồm chữ thường, in hoa, sô"
                     }
                   })}
                 />

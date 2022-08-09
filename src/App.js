@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/Layout";
+import * as doctorServices from '~/apiServices/doctorServices';
 
 import Home from "./pages/Home";
 import Hospital from "./pages/Hospital";
@@ -14,6 +15,10 @@ import HisotoryBooking from "./pages/HisotoryBooking";
 import BookingDetail from "./pages/BookingDetail";
 import VerifyBooking from "./pages/VerifyBooking";
 import HistoryMedical from "./pages/medical/HistoryMedical";
+import HandBook from "./pages/handBook/HandBook";
+import Department from "./pages/department/Department";
+import DepartmentDetail from "./pages/department/DepartmentDetail";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
 
@@ -25,6 +30,13 @@ function App() {
           <Route index element={<Doctor />} />
           <Route path=":doctorID" element={<DoctorDetail />} />
         </Route>
+        <Route path="cam-nang">
+          <Route index element={<HandBook />} />
+        </Route>
+        <Route path="department">
+          <Route index element={<Department />} />
+          <Route path=":departmentID" element={<DepartmentDetail />} />
+        </Route>
         <Route path="thong-tin-ca-nhan">
           <Route index element={<Profile />} />
           <Route path=":userID" element={<UserDetail />} />
@@ -34,6 +46,8 @@ function App() {
           <Route path=":maDL" element={<BookingDetail />} />
         </Route>
         <Route exact path="/hospital" element={<Hospital />} />
+        <Route exact path="/change-password" element={<ChangePassword />} />
+
         <Route exact path="/booking" element={<Booking />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/ho-so-suc-khoe" element={<HistoryMedical />} />

@@ -4,6 +4,8 @@ import authReducer from "./authSlide";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import historyReducer from "./historyBooking";
+import departmentReducer from "./departmentSlide";
+
 
 const persistConfig = {
   key: 'root',
@@ -13,7 +15,10 @@ const persistConfig = {
 const rootReducer = combineReducers({
   booking: bookingReducer,
   auth: authReducer,
-  history: historyReducer
+  department: departmentReducer,
+  history: historyReducer,
+
+
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

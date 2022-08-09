@@ -28,6 +28,8 @@ const Menu = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log(user);
+
 
   return (
     <div className='container'>
@@ -43,8 +45,9 @@ const Menu = () => {
           <Link to="/hospital" className='menu__link'>
             <li className='menu__link__item'>Bệnh viện</li>
           </Link>
-          <li className='menu__link__item'>Cẩm nang</li>
-          <li className='menu__link__item'>Chuyên khoa</li>
+          <Link to="/department" className='menu__link'>
+            <li className='menu__link__item'>Chuyên khoa</li>
+          </Link>
         </ul>
         <div className='menu__mobile'>
           <div className={!isActive ? 'menu__mobile__icon' : 'menu__mobile__icon--close'}>
@@ -57,28 +60,38 @@ const Menu = () => {
               </Modal.Header>
               <Modal.Body>
                 {!user
-                  ? <div className='user'>
-                    <span className='user__register'><ModalRegister /></span>
-                    <div className='space'></div>
-                    <span className='user__login'><ModalLogin /></span>
-                  </div>
-                  : <div className='user'>
-                    <span className='user__register user__register--mobile'>Hi {user?.HoTen}</span>
-                  </div>
+                  ? <>
+                    <div className='user'>
+                      <span className='user__register'><ModalRegister /></span>
+                      <div className='space'></div>
+                      <span className='user__login'><ModalLogin /></span>
+
+                    </div>
+                    <ul className="menu">
+                      <li className='menu__item'><Link to='/' className='link'>Trang chủ</Link></li>
+                      <li className='menu__item'><Link to='/doctor' className='link'>Bác sĩ</Link></li>
+                      <li className='menu__item'><Link to='/hospital' className='link'>Bệnh viện</Link></li>
+                      <li className='menu__item'><Link to='/department' className='link'>Chuyên khoa</Link></li>
+                    </ul>
+                  </>
+                  : <>
+                    <div className='user'>
+                      <span className='user__register user__register--mobile'>Hi {user?.HoTen}</span>
+                    </div>
+                    <div className='menu'>
+                      <li className='menu__item'><Link to='/' className='link'>Trang chủ</Link></li>
+                      <li className='menu__item'><Link to='/doctor' className='link'>Bác sĩ</Link></li>
+                      <li className='menu__item'><Link to='/hospital' className='link'>Bệnh viện</Link></li>
+                      <li className='menu__item'><Link to='/department' className='link'>Chuyên khoa</Link></li>
+                      <li className='menu__item'><Link to='/thong-tin-ca-nhan' className='link'>Thông tin cá nhân</Link></li>
+                      <li className='menu__item'><Link to='/historyBooking' className='link'>Lịch sử khám bệnh</Link></li>
+                      <li className='menu__item'><Link to='/ho-so-suc-khoe' className='link'>Hô sơ sức khoẻ</Link></li>
+                      <li className='menu__item link' onClick={() => { logout(dispatch, navigate) }}>Đăng xuất</li>
+                    </div>
+                  </>
                 }
 
-                <ul className="menu">
-                  <li className='menu__item'><Link to='/' className='link'>Trang chủ</Link></li>
-                  <li className='menu__item'><Link to='/doctor' className='link'>Đặt lịch</Link></li>
-                  <li className='menu__item'><Link to='/' className='link'>Cộng đồng</Link></li>
-                  <li className='menu__item'><Link to='/' className='link'>Cẩm nang</Link></li>
-                  <li className='menu__item'><Link to='/' className='link'>Chuyên khoa</Link></li>
-                  <li className='menu__item'><Link to='/thong-tin-ca-nhan' className='link'>Thông tin cá nhân</Link></li>
-                  <li className='menu__item'><Link to='/historyBooking' className='link'>Lịch sử khám bệnh</Link></li>
-                  <li className='menu__item'><Link to='/ho-so-suc-khoe' className='link'>Hô sơ sức khoẻ</Link></li>
-                  <li className='menu__item link' onClick={() => { logout(dispatch, navigate) }}>Đăng xuất</li>
 
-                </ul>
                 <div className='support'>
                   <div className='support__hotline'>
                     <Phone />

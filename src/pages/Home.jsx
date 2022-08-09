@@ -4,18 +4,28 @@ import Experience02 from '~/assets/img/experience-top-doctor.png';
 import Experience03 from '~/assets/img/experience-right.png';
 import Experience04 from '~/assets/img/experience-price.png';
 import BannerSearch from '~/assets/img/banner-search.svg';
-import { ReactComponent as Search } from '../assets/icons/search.svg';
 import { ReactComponent as IconNext } from '../assets/icons/icon-next.svg';
-import SliderImg from '~/assets/img/slider-img.png';
-
-
+import * as doctorServices from '~/apiServices/doctorServices';
 import Slider from "react-slick";
 import '../../node_modules/slick-carousel/slick/slick.css'
 import '../../node_modules/slick-carousel/slick/slick-theme.css';
+import ModalBooking from '~/components/ModalBooking';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Home = () => {
+  const [doctors, setDoctors] = useState([]);
+  const navigate = useNavigate();
+
+  const getDoctor = async () => {
+    const res = await doctorServices.fetchDoctorWithPage(1);
+    setDoctors(res.data)
+  }
+  useEffect(() => {
+    getDoctor()
+  }, [])
 
   var settings = {
     dots: false,
@@ -38,10 +48,9 @@ const Home = () => {
           <div className="desc">
             <h3>Bạn là người tiêu dùng thông thái, bạn yêu gia đình hơn chính bản thân mình. Hãy cùng ISOFHCARE chăm sóc sức khỏe cho bản thân và gia đình để mỗi ngày bên nhau là một ngày ý nghĩa.</h3>
           </div>
-          <button className="button">Đặt khám ngay</button>
+          <ModalBooking />
         </div>
       </div>
-
       <div className="experience-wrap">
         <div className="container">
           <div className="experience">
@@ -73,69 +82,53 @@ const Home = () => {
       </div>
 
       <div className='search'>
-        <div className='search__box'>
-          <input className='search__box__input' placeholder='Tìm triệu chứng, chuyên khoa, tên bệnh viện, phòng khám' type='text' name="search-text" />
-          <button className='search__box__button'>Tìm kiếm <span className='btn-search'><Search /></span></button>
-        </div>
-        <ul className='search__list'>
-          <li className='search__list__item'>Tìm kiếm phổ biến:</li>
-          <li className='search__list__item'>Khám Tai Mũi Họng</li>
-          <li className='search__list__item'>Khám sản phụ khoa</li>
-          <li className='search__list__item'>Nội soi tiêu hóa</li>
-          <li className='search__list__item'>Siêu âm 2D</li>
-        </ul>
         <img className='search__banner img-fluid' src={BannerSearch} alt='banner-searhc' />
         <div className='search__top'>
           <div className='search__top__title'>
-            <h2>Dịch vụ nổi bật</h2>
-            <div className='seen-all'>
+            <h2>Bác sĩ nổi bật</h2>
+            <div className='seen-all' onClick={() => { navigate('/doctor') }}>
               <h3>Xem tất cả</h3>
               <IconNext />
             </div>
-
           </div>
           <div className='search__top__slider'>
             <Slider {...settings}>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm HealthcareXét nghiệm ADN Tự nguyện tại Trung tâm HealthcareXét nghiệm ADN Tự nguyện tại Trung tâm HealthcareXét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
-              <div className='slider-item'>
-                <img className='slider-item__img' src={SliderImg} alt="slider-img" />
-                <h3 className="slider-item__desc">Xét nghiệm ADN Tự nguyện tại Trung tâm Healthcare</h3>
-                <div className="slider-item__info">BỆNH VIỆN ĐA KHOA BẢO SƠN</div>
-              </div>
+              {doctors?.map((item) => {
+                return <div className='slider-item' key={item.id}>
+                  <img className='slider-item__img' src={item.HinhAnh} alt="slider-img" />
+                  <h3 className="slider-item__desc">{item.HoTen}</h3>
+                  <div className="slider-item__info">{item.ChuyenNganh}</div>
+                </div>
+              })}
             </Slider>
           </div>
         </div>
       </div>
-      <div></div>
+
+      <div className='technique-wrap'>
+        <div className='container'>
+          <div className='technique '>
+            <div className='technique__title department'>
+              <h2 >Đội ngủ bác sĩ</h2>
+              <p className=''>Chuyên môn vững vàng; Dịch vụ chuyên nghiệp</p>
+            </div>
+            <div className='technique__list'>
+              <div className='item'>
+                <div className='item__title'>Giàu kinh nghiệm</div>
+                <div className='item__content'>Tất cả các bác sĩ đều có chứng chỉ hành nghề đã xác thực, vững vàng về chuyên môn, phong phú về kinh nghiệm và tận tâm trong công việc.</div>
+              </div>
+              <div className='item'>
+                <div className='item__title'>100% HÀI LÒNG</div>
+                <div className='item__content'>Bạn được mời chấm điểm và góp ý sau mỗi lần khám. Nếu chưa hài lòng, Wellcare tài trợ một lần khám khác cùng chuyên khoa, cho dù với mức phí cao hơn</div>
+              </div>
+              <div className='item'>
+                <div className='item__title'>Y HỌC CHỨNG CỨ</div>
+                <div className='item__content'>Bác sĩ thực hành Y học chứng cứ, không lạm dụng thuốc và xét nghiệm. Ưu tiên tư vấn các phương pháp điều trị an toàn, tránh xâm lấn.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className='disc'>
         <div className='container'>

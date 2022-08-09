@@ -31,6 +31,9 @@ const Booking = () => {
   }, [data]);
 
   const handleBooking = async () => {
+    if (!user) {
+      return toast.error("Đăng nhập đề tiếp tục")
+    }
     if (decs.length <= 0) {
       return toast.error("Nhập triệu chứng bệnh của bạn")
     } else {
