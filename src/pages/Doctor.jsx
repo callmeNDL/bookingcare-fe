@@ -1,46 +1,38 @@
 import { ReactComponent as IconSearch } from '../assets/icons/search.svg';
 import IconBooking from '~/assets/icons/booking.png'
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import * as doctorServices from '~/apiServices/doctorServices';
 import { Link } from 'react-router-dom';
-import queryString from 'query-string'
 const Doctor = () => {
-  const [countPage, setCountPage] = useState(1);
   const [doctors, setDoctors] = useState([]);
-  const [textSearch, setTextSearch] = useState("");
+  const [doctorSearch, setDoctorSearch] = useState([]);
 
-  const [page, setPage] = useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
+  const [textSearch, setTextSearch] = useState('');
+  const [filterText, setFilterText] = useState('');
 
-
+  const [visible, setVisible] = useState(8);
 
   const fetchDoctor = async () => {
-    const result = await doctorServices.fetchDoctorWithPage(page);
+    const result = await doctorServices.fetchDoctor("ALL");
     setDoctors(result);
-    let total = Math.floor(result.totalRow / 8);
-    if (result.totalRow % 8 > 0) {
-      total++;
-    }
-    setCountPage(total)
   }
 
   const handleSearch = async (e) => {
     setTextSearch(e.target.value)
+    startTransition(() => {
+      setFilterText(e.target.value);
+      const result = doctors.filter((item) => item.HoTen.includes(filterText));
+      setDoctorSearch(result)
+    })
   }
 
-  const handleActionSearch = async () => {
-    const paramsString = queryString.stringify(textSearch)
-    // const res = await doctorServices.searchDoctor(paramsString);
-    console.log(paramsString);
+  const showMoreItems = () => {
+    setVisible((preValue) => preValue + 8);
   }
 
   useEffect(() => {
     fetchDoctor()
-  }, [page])
+  }, [])
 
   return (
     <>
@@ -54,9 +46,16 @@ const Doctor = () => {
             <div className="doctor-search__box">
               <div className='doctor-search__box__input'>
                 <IconSearch />
-                <input className='' type="text" placeholder='Tìm bác sĩ' onChange={(e) => handleSearch(e)} />
+                <input
+                  className=''
+                  type="text"
+                  placeholder='Nhập tên bác sĩ'
+                  value={textSearch}
+                  onChange={(e) => handleSearch(e)}
+
+                />
               </div>
-              <button className='doctor-search__box__button' onClick={handleActionSearch}>Tìm kiếm</button>
+              <button className='doctor-search__box__button' >Tìm kiếm</button>
             </div>
           </div>
         </div>
@@ -65,33 +64,46 @@ const Doctor = () => {
         <div className='container'>
           <div className='doctors'>
             {
-              doctors.data?.map((item) => {
-                return <div className='doctor' key={item.MaBS}>
-                  <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
-                  <div className='doctor__info'>
-                    <div className='doctor__info__name' >{item.HoTen}</div>
-                    <div className='doctor__info__hospital'>Phòng khám Đa Khoa Y khoa STU</div>
-                    <div className='doctor__info__specializations'>{item.ChuyenNganh}</div>
+              doctorSearch.length !== 0 && filterText !== ''
+                ? doctorSearch?.slice(0, visible).map((item) => {
+                  return <div className='doctor' key={item.MaBS}>
+                    <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
+                    <div className='doctor__info'>
+                      <div className='doctor__info__name' >{item.HoTen}</div>
+                      <div className='doctor__info__hospital'>Phòng khám Đa Khoa Y khoa STU</div>
+                      <div className='doctor__info__specializations'>{item.ChuyenNganh}</div>
+                    </div>
+                    <Link to={`${item.id}`} className=" doctor__button link">
+                      <img className='booking-img' src={IconBooking} alt='icon-booking' />
+                      <span className='booking-text'>Đặt khám</span>
+                    </Link>
                   </div>
-                  <Link to={`${item.id}`} className=" doctor__button link">
-                    <img className='booking-img' src={IconBooking} alt='icon-booking' />
-                    <span className='booking-text'>Đặt khám</span>
-                  </Link>
-                </div>
-              })
+                })
+                : doctors?.slice(0, visible).map((item) => {
+                  return <div className='doctor' key={item.MaBS}>
+                    <img className='doctor__img img-fluid' src={item.HinhAnh} alt={item.HoTen} />
+                    <div className='doctor__info'>
+                      <div className='doctor__info__name' >{item.HoTen}</div>
+                      <div className='doctor__info__hospital'>Phòng khám Đa Khoa Y khoa STU</div>
+                      <div className='doctor__info__specializations'>{item.ChuyenNganh}</div>
+                    </div>
+                    <Link to={`${item.id}`} className=" doctor__button link">
+                      <img className='booking-img' src={IconBooking} alt='icon-booking' />
+                      <span className='booking-text'>Đặt khám</span>
+                    </Link>
+                  </div>
+                })
             }
           </div>
-        </div>
-      </div>
-      <div className='pagination-wrap bg-gray2'>
-        <div className='container'>
-          <div className='pagination'>
-            <Stack spacing={2}>
-              <Pagination count={countPage} page={page} onChange={handleChange} size="large" />
-            </Stack>
+          <div className='show-more'>
+            {
+              doctors.length >= visible && <button className='doctor__button show-more__button' onClick={showMoreItems}>Show more</button>
+            }
+
           </div>
         </div>
       </div>
+
     </>
   )
 }

@@ -159,13 +159,12 @@
     }
   }
 }
-.pagination-wrap {
+.show-more {
   padding: 15px 0 40px;
-  .container {
-    .pagination {
-      display: flex;
-      justify-content: center;
-    }
+  display: flex;
+  justify-content: center;
+  &__button {
+    color: var(--white);
   }
 }
 
